@@ -1,6 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "FiraGo";
+  src: url("assets/fonts/FiraGO_TTF_1001/Roman/FiraGO-Regular.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "FiraGo";
 }
