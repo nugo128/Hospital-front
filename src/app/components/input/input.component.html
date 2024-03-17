@@ -1,4 +1,4 @@
 <div class="input">
-    <label for=""></label>
-    <input [type]="inputType" [placeholder]="placeholder">
+    <label for="">{{label}}</label>
+    <input [type]="inputType" [placeholder]="placeholder" (input)="onChange($event.target.value)" >
 </div>

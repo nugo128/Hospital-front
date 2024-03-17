@@ -1,1 +1,16 @@
-<p>registration works!</p>
+<div class="registration">
+    <h2 class="header">რეგისტრაცია</h2>
+    <form [formGroup]="registrationForm">
+        <div class="row1">
+            <app-input [label]="'სახელი'" [placeholder]="'(მინიმუმ 5 სიმბოლო)'" formControlName="name"></app-input>
+            <app-input [label]="'Email'" [placeholder]="'Email'" formControlName="email"></app-input>
+            <app-input [label]="'პირადი ნომერი'" [placeholder]="'00000000000'" formControlName="idNumber"></app-input>
+        </div>
+        <div class="row2">
+            <app-input [label]="'გვარი'" [placeholder]="'გვარი'" formControlName="lastName"></app-input>
+            <app-input [label]="'აქტივაციის კოდი'" [placeholder]="'აქტივაციის კოდი'"></app-input>
+            <app-input [label]="'პაროლი'" [placeholder]="'( მინიმუმ 8 სიმბოლო : @ 7 , )'" formControlName="password"></app-input>
+        </div>
+        <app-button text="რეგისტრაცია" class="btn" (click)="onSubmit()"></app-button>
+    </form>
+</div>

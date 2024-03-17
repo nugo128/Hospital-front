@@ -7,6 +7,8 @@ import { RegistrationComponent } from './pages/registration/registration.compone
 import { HeaderComponent } from './components/header/header.component';
 import { InputComponent } from './components/input/input.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ButtonComponent } from './components/button/button.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,13 +16,11 @@ import { FooterComponent } from './components/footer/footer.component';
     RegistrationComponent,
     HeaderComponent,
     InputComponent,
-    FooterComponent
+    FooterComponent,
+    ButtonComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
