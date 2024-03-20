@@ -5,6 +5,7 @@ header {
   display: flex;
   align-items: center;
   color: #ff2c52;
+  cursor: pointer;
 }
 .logo img {
   width: 60px;

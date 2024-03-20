@@ -1,0 +1,109 @@
+.hospital-image {
+  height: 600px;
+  width: 100%;
+  background-image: url("../../../assets/images/hospital.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.hospital-info {
+  width: 1087px;
+  height: 100%;
+  border-radius: 0 50px 50px 0;
+  background-color: #05335440;
+  display: flex;
+  align-items: center;
+  padding-left: 120px;
+}
+.title {
+  font-size: 48px;
+  font-weight: 600;
+  color: white;
+  width: 670px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.address {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  gap: 20px;
+  padding: 15px 25px;
+  border-radius: 50px;
+  width: 370px;
+}
+.address p {
+  font-size: 22px;
+  font-weight: 400;
+}
+.main-content {
+  padding: 50px 120px;
+  display: flex;
+  gap: 70px;
+}
+.categories {
+  height: 800px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 50px;
+  gap: 25px;
+  box-shadow: 0px 4px 50px 0px #0533540d;
+  border-radius: 10px;
+}
+.categories h3 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.category {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+}
+.category span {
+  color: rgb(165, 165, 165);
+  font-size: 16px;
+  width: 45px;
+}
+.category h4 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #053354;
+}
+.line {
+  margin-top: 20px;
+}
+.view-full {
+  font-size: 14px;
+  font-weight: 400;
+  color: #18a4e1;
+}
+.doctors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.see-all {
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  margin-left: 89%;
+  gap: 6px;
+}
+.see-all p {
+  color: #053354;
+
+  font-size: 14px;
+  font-weight: 400;
+}
+.see {
+  width: 80px;
+  height: 2px;
+  background-color: #18a4e1;
+  justify-self: flex-end;
+  align-self: flex-end;
+}

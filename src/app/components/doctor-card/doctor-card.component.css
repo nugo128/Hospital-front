@@ -1,0 +1,59 @@
+.book {
+  display: flex;
+  border: none;
+  border-radius: 25px;
+  background-color: #ecf2f8;
+  padding: 15px 30px;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.book:hover {
+  border: 1px solid #18a4e1;
+  background-color: white;
+  color: #18a4e1;
+  fill: #18a4e1;
+}
+.book p {
+  font-size: 16px;
+  font-weight: 400;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 390px;
+  height: 390px;
+  box-shadow: 0px 4px 30px 0px #0533540d;
+  border: 1px solid #18a4e14d;
+  border-radius: 10px;
+  padding: 15px;
+}
+img {
+  width: 157px;
+  height: 157px;
+  margin-bottom: 5px;
+}
+.views {
+  display: flex;
+  align-items: center;
+  background-color: #ecf2f880;
+  border-radius: 50px;
+  gap: 10px;
+  padding: 6px 15px;
+  color: #05335480;
+  align-self: flex-start;
+}
+h2 {
+  color: #053354;
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+.position {
+  color: #0533544d;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 10px 0;
+}
