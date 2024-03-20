@@ -1,4 +1,4 @@
 <div class="input">
     <label for="">{{label}}</label>
-    <input [type]="inputType" [placeholder]="placeholder" (input)="onChange($event.target.value)" >
+    <input [type]="inputType" [placeholder]="placeholder" [ngStyle]="width?{'width': width+'px'} : ''" (input)="onChange($event.target.value)" >
 </div>

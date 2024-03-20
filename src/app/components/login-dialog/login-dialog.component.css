@@ -1,0 +1,25 @@
+h2 {
+  margin: 50px 110px 30px 110px;
+  font-size: 26px;
+  font-weight: 500;
+  color: #18a4e1;
+}
+.mat-typography {
+  margin: 0 90px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+p {
+  align-self: flex-end;
+  color: #053354;
+  font-size: 14px;
+  font-weight: 400;
+}
