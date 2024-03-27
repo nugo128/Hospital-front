@@ -1,9 +1,9 @@
 <h2>ავტორიზაცია</h2>
 <mat-dialog-content class="mat-typography">
-<form action="">
-    <app-input [placeholder]="'ელ.ფოსტა/ ტელეფონის ნომერი'" [width]="377"></app-input>
-    <app-input [placeholder]="'პაროლი'" [inputType]="'password'" [width]="377" ></app-input>
+<form  [formGroup]="loginForm">
+    <app-input [placeholder]="'ელ.ფოსტა/ ტელეფონის ნომერი'" [width]="377" formControlName="email"></app-input>
+    <app-input [placeholder]="'პაროლი'" [inputType]="'password'" [width]="377" formControlName="password"></app-input>
 </form>
     <p>პაროლის აღდგენა</p>
-    <app-button [text]="'შესვლა'" [width]="180"></app-button>
+    <app-button [text]="'შესვლა'" [width]="180" (click)="onSubmit()"></app-button>
 </mat-dialog-content>

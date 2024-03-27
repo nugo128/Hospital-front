@@ -18,20 +18,7 @@
             <path d="M0 1H250" stroke="#ECF2F8"/>
         </svg>
 
-        <div class="category"><span>( 14 )</span><h4>ადროლოგი</h4></div> 
-        <div class="category"><span>( 36 )</span><h4>ანესთეზიოლოგი</h4></div> 
-        <div class="category"><span>( 476 )</span><h4>კარდიოლოგი</h4></div> 
-        <div class="category"><span>( 23 )</span><h4>კოსმეტოლოგი</h4></div> 
-        <div class="category"><span>( 66 )</span><h4>ლაბორანტი</h4></div> 
-        <div class="category"><span>( 31 )</span><h4>ოჯახის ექიმი</h4></div> 
-        <div class="category"><span>( 55 )</span><h4>პედიატრი</h4></div> 
-        <div class="category"><span>( 34 )</span><h4>ტოქსიკოლოგი</h4></div> 
-        <div class="category"><span>( 11 )</span><h4>ტრანსფუზილოგი</h4></div> 
-        <div class="category"><span>( 87 )</span><h4>გინეკოლოგი</h4></div> 
-        <div class="category"><span>( 123 )</span><h4>დერმატოლოგი</h4></div> 
-        <div class="category"><span>( 8 )</span><h4>ენდოკრინოლოგი</h4></div> 
-        <div class="category"><span>( 7 )</span><h4>გასტროენტეროლოგი</h4></div> 
-        <div class="category"><span>( 133 )</span><h4>ტერაპერტი</h4></div> 
+        <div class="category" *ngFor="let category of categories"><span>( {{category.id * 16}} )</span><h4>{{category.name}}</h4></div> 
         
         <svg class="line" width="250" height="2" viewBox="0 0 250 2" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 1H250" stroke="#ECF2F8"/>
@@ -43,12 +30,9 @@
 
     </div>
     <div class="doctors">
-        <app-doctor-card [name]="'გიორგი ხორავა'" [position]="'კარდიოლოგი / არითმოლოგი'" [starCount]="5"></app-doctor-card>
-        <app-doctor-card [name]="'გიორგი ხორავა'" [position]="'კარდიოლოგი / არითმოლოგი'" [starCount]="5"></app-doctor-card>
-        <app-doctor-card [name]="'გიორგი ხორავა'" [position]="'კარდიოლოგი / არითმოლოგი'" [starCount]="5"></app-doctor-card>
-        <app-doctor-card [name]="'გიორგი ხორავა'" [position]="'კარდიოლოგი / არითმოლოგი'" [starCount]="5"></app-doctor-card>
-        <app-doctor-card [name]="'გიორგი ხორავა'" [position]="'კარდიოლოგი / არითმოლოგი'" [starCount]="5"></app-doctor-card>
-        <app-doctor-card [name]="'გიორგი ხორავა'" [position]="'კარდიოლოგი / არითმოლოგი'" [starCount]="5"></app-doctor-card>
+        <ng-container *ngFor="let doctor of users">
+            <app-doctor-card *ngIf="doctor.role === 'doctor'" [name]="doctor.name + ' ' + doctor.lastName" [position]="doctor.categories" [starCount]="doctor.rating"></app-doctor-card>
+        </ng-container>
         <div class="see-all">
             <p>სრულად ნახვა</p>
             <div class="see"></div>

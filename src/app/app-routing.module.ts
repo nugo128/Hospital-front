@@ -5,7 +5,16 @@ import { MainComponent } from './pages/main/main.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
-  { path: 'register', component: RegistrationComponent },
+  {
+    path: 'register',
+    component: RegistrationComponent,
+    children: [
+      {
+        path: 'verify',
+        component: RegistrationComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
