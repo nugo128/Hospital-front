@@ -34,6 +34,7 @@ img {
   width: 157px;
   height: 157px;
   margin-bottom: 5px;
+  border-radius: 50%;
 }
 .views {
   display: flex;

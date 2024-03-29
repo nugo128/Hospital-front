@@ -9,6 +9,7 @@ export class DoctorCardComponent {
   @Input() name = '';
   @Input() position;
   @Input() starCount = 0;
+  @Input() image = '';
 
   renderCategoryNames(): string {
     if (this.position.length === 1) {

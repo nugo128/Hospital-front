@@ -31,7 +31,7 @@
     </div>
     <div class="doctors">
         <ng-container *ngFor="let doctor of users">
-            <app-doctor-card *ngIf="doctor.role === 'doctor'" [name]="doctor.name + ' ' + doctor.lastName" [position]="doctor.categories" [starCount]="doctor.rating"></app-doctor-card>
+            <app-doctor-card *ngIf="doctor.role === 'doctor'"  [name]="doctor.name + ' ' + doctor.lastName" [position]="doctor.categories" [image]="doctor.image" [starCount]="doctor.rating"></app-doctor-card>
         </ng-container>
         <div class="see-all">
             <p>სრულად ნახვა</p>
