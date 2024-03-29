@@ -17,7 +17,4 @@ export class AuthService {
   login(formData) {
     return this.http.post(`${BASE_API_URL}/users/login`, formData);
   }
-  users() {
-    return this.http.get(`${BASE_API_URL}/users`);
-  }
 }

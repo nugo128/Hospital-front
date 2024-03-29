@@ -22,6 +22,7 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
+import { BookAppointmentComponent } from './pages/book-appointment/book-appointment.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     MainComponent,
     DoctorCardComponent,
     LoginDialogComponent,
+    BookAppointmentComponent,
   ],
   imports: [
     BrowserModule,

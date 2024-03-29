@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-doctor-card',
@@ -10,6 +11,8 @@ export class DoctorCardComponent {
   @Input() position;
   @Input() starCount = 0;
   @Input() image = '';
+  @Input() id = 0;
+  constructor(private router: Router) {}
 
   renderCategoryNames(): string {
     if (this.position.length === 1) {
@@ -24,5 +27,8 @@ export class DoctorCardComponent {
       }
       return categoryNames;
     }
+  }
+  book(id) {
+    this.router.navigate([`book-appointment/${id}`]);
   }
 }

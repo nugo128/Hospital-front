@@ -1,17 +1,4 @@
-
-<div class="hospital-image">
-    <div class="hospital-info">
-        <div class="info">
-            <h2 class="title">აირჩიე კლინიკა რომელსაც შეგიძლია ენდო</h2>
-            <div class="address"><svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.95 29.55C9.75 28.35 0 18.3 0 12C0 5.4 5.4 0 12 0C18.6 0 24 5.4 24 12C24 18.3 14.25 28.35 13.05 29.55C12.45 30.15 11.55 30.15 10.95 29.55ZM12 3C7.05 3 3 7.05 3 12C3 15.75 8.7 22.8 12 26.25C15.3 22.8 21 15.75 21 12C21 7.05 16.95 3 12 3Z" fill="#18A4E1"/>
-                <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="#18A4E1"/>
-                </svg>
-                <p>იაკობ ნიკოლაძე №10</p></div>
-        </div>
-    </div>
-</div>
-<div class="main-content">
+<div class="main-cont">
     <div class="categories">
         <h3>კატეგორიები</h3>
         <svg width="250" height="2" viewBox="0 0 250 2" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,13 +16,23 @@
         </p>
 
     </div>
-    <div class="doctors">
-        <ng-container *ngFor="let doctor of users">
-            <app-doctor-card *ngIf="doctor.role === 'doctor'"  [name]="doctor.name + ' ' + doctor.lastName" [position]="doctor.categories" [image]="doctor.image" [starCount]="doctor.rating" [id]="doctor.id" ></app-doctor-card>
-        </ng-container>
-        <div class="see-all">
-            <p>სრულად ნახვა</p>
-            <div class="see"></div>
+    <div>
+        <div class="doctor">
+            <img [src]="'data:image/jpeg;base64,' + user?.image" alt="Image">
+            <div class="personal-info">
+                <h2>{{user?.name}} {{user?.lastName}}</h2>
+                <p class="position">{{renderCategoryNames()}}</p>
+                <div class="stars">
+                    <svg *ngFor="let _ of [].constructor(user?.rating); let i = index" xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#FFD233" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
+                </div>
+                
+            </div>
+            <div class="line"></div>
+            <div class="description">
+                <p><span>2017-დღემდე</span>ჩვენი კლინიკის გენერალური დირექტორი</p>
+                <p><span>2022-დღემდე</span>ჩვენი კომპიუტერული ტომოგრაფიის განყოფილების ხელმძღვანელი</p>
+                <p><span>1995-დღემდე</span> კარდიოლოგი / არითმოლოგი</p>
+            </div>
         </div>
     </div>
 </div>
