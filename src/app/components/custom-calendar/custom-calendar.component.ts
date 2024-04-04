@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { BookingService } from '../../services/bookings.service';
 interface TimeSlot {
   time: string;
 }
@@ -12,17 +13,33 @@ interface BookedSlot {
   templateUrl: './custom-calendar.component.html',
   styleUrl: './custom-calendar.component.css',
 })
-export class CustomCalendarComponent {
+export class CustomCalendarComponent implements OnInit {
   currentDate = new Date();
   weekStart: Date;
   weekEnd: Date;
   days: Date[] = [];
   timeSlots: TimeSlot[] = [];
   bookedSlots: BookedSlot[] = [];
+  now = new Date();
+  @Input() id = 0;
+  startOfMonth = new Date(
+    this.currentDate.getFullYear(),
+    this.currentDate.getMonth(),
+    1
+  );
 
-  constructor() {
+  constructor(private bookingService: BookingService) {
     this.calculateWeek();
     this.generateTimeSlots();
+  }
+  ngOnInit(): void {
+    this.bookingService.doctor(this.id).subscribe((resp) => {
+      for (let i = 0; i < resp['length']; i++) {
+        const dateString = resp[i].bookingDate.split('T')[0];
+
+        this.bookedSlots.push({ date: dateString, time: resp[i].time });
+      }
+    });
   }
 
   calculateWeek() {
@@ -37,8 +54,30 @@ export class CustomCalendarComponent {
       newDay.setDate(newDay.getDate() + i);
       this.days.push(newDay);
     }
+    this.startOfMonth = new Date(
+      this.currentDate.getFullYear(),
+      this.currentDate.getMonth(),
+      1
+    );
   }
 
+  nextMonth() {
+    this.currentDate = new Date(
+      this.currentDate.getFullYear(),
+      this.currentDate.getMonth() + 1,
+      this.currentDate.getDate()
+    );
+    this.calculateWeek();
+  }
+
+  prevMonth() {
+    this.currentDate = new Date(
+      this.currentDate.getFullYear(),
+      this.currentDate.getMonth() - 1,
+      this.currentDate.getDate()
+    );
+    this.calculateWeek();
+  }
   generateTimeSlots() {
     this.timeSlots = [];
     for (let hour = 9; hour <= 16; hour++) {
@@ -55,11 +94,28 @@ export class CustomCalendarComponent {
       this.bookedSlots.splice(index, 1);
     } else {
       this.bookedSlots.push({ date: dateString, time: slot.time });
+      console.log(this.bookedSlots);
     }
   }
-  isWeekend(day: Date): boolean {
+  isWeekend(day: Date, slot: string): boolean {
     const dayOfWeek = day.getDay();
-    return dayOfWeek === 0 || dayOfWeek === 6;
+    const currentDate = new Date();
+    const isToday = day.toDateString() === currentDate.toDateString();
+    const startTime = new Date(
+      currentDate.toDateString() + ' ' + slot['time'].split('-')[0].trim()
+    );
+    const checkHours = isToday ? currentDate > startTime : false;
+    return (
+      dayOfWeek === 0 ||
+      dayOfWeek === 6 ||
+      day <
+        new Date(
+          currentDate.getFullYear(),
+          currentDate.getMonth(),
+          currentDate.getDate()
+        ) ||
+      checkHours
+    );
   }
 
   isBooked(date: Date, slot: TimeSlot): boolean {

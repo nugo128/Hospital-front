@@ -11,6 +11,7 @@ import { CategoryService } from '../../services/category.service';
 export class BookAppointmentComponent implements OnInit {
   user: any;
   categories: any;
+  id: number;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -19,6 +20,7 @@ export class BookAppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
+      this.id = param['id'];
       this.userService.user(param['id']).subscribe((resp) => {
         this.user = resp;
         console.log(resp);

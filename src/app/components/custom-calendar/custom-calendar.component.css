@@ -14,7 +14,7 @@ table {
 
 th,
 td {
-  border: 1px solid #ddd;
+  border: 1px solid #ecf2f8;
   padding: 8px;
   text-align: center;
   background-color: white;
@@ -37,22 +37,46 @@ td:hover {
 
 .controls {
   margin-bottom: 20px;
+  display: flex;
+  align-self: flex-start;
+  margin-left: 50px;
+  gap: 40px;
 }
 
 .booked {
-  background-color: lightgreen;
+  background-color: #ff93a6;
   border-radius: 10px;
   max-width: 100px;
   text-wrap: wrap;
   word-wrap: break-word;
   overflow: hidden;
   white-space: nowrap;
+  pointer-events: none;
 }
 .booked-text {
-  white-space: normal; /* Allow text to wrap onto the next line */
+  white-space: normal;
   display: inline-block;
   max-width: 100px;
+  border: none;
 }
 .weekend {
   background-color: #fffff5;
+}
+.plus {
+  color: #3acf99;
+}
+.controls button,
+.change-week {
+  border-radius: 50%;
+  background-color: #fff;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0px 4px 10px 0px #0533540d;
+}
+.change-week {
+  margin-left: 5px;
+  width: 25px;
+  height: 25px;
 }

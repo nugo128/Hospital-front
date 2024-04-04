@@ -22,6 +22,7 @@ export class RegistrationComponent implements OnInit {
       lastName: [''],
       idNumber: [''],
       password: [''],
+      image: [null],
     });
   }
   ngOnInit() {
@@ -38,7 +39,7 @@ export class RegistrationComponent implements OnInit {
       );
     });
   }
-  formdata: any;
+  formdata: FormData;
   onSubmit() {
     this.formdata = this.registrationForm.value;
     console.log(this.formdata);
