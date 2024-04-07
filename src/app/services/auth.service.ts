@@ -17,4 +17,19 @@ export class AuthService {
   login(formData) {
     return this.http.post(`${BASE_API_URL}/users/login`, formData);
   }
+  forgotPassword(email) {
+    return this.http.post(
+      `${BASE_API_URL}/users/forgot-password?email=${email}`,
+      {}
+    );
+  }
+  resetPassword(code, password, repeat) {
+    return this.http.post(
+      `${BASE_API_URL}/users/reset-password?token=${code}`,
+      {
+        password,
+        repeatPassword: repeat,
+      }
+    );
+  }
 }

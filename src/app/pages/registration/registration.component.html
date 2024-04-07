@@ -8,9 +8,10 @@
         </div>
         <div class="row2">
             <app-input [label]="'გვარი'" [placeholder]="'გვარი'" formControlName="lastName"></app-input>
-            <app-input [label]="'აქტივაციის კოდი'" [placeholder]="'აქტივაციის კოდი'"></app-input>
+            <app-input [label]="'აქტივაციის კოდი'" [placeholder]="'აქტივაციის კოდი'" formControlName="code"></app-input>
             <app-input [label]="'პაროლი'" [placeholder]="'( მინიმუმ 8 სიმბოლო : @ 7 , )'" formControlName="password"></app-input>
+            <app-input *ngIf="currentUrl === '/register/reset-password'" [label]="'გაიმეორეთ პაროლი'" [placeholder]="'( მინიმუმ 8 სიმბოლო : @ 7 , )'" formControlName="repeatPassword"></app-input>
         </div>
-        <app-button text="რეგისტრაცია" class="btn" (click)="onSubmit()"></app-button>
+        <app-button [text]="currentUrl === '/register/reset-password' ?  'დადასტურება' : 'რეგისტრაცია'" class="btn" (click)="onSubmit()"></app-button>
     </form>
 </div>

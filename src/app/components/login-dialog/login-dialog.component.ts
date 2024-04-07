@@ -30,4 +30,21 @@ export class LoginDialogComponent {
       localStorage.setItem('token', resp['token']);
     });
   }
+  closeDialogWithData(type: string): void {
+    this.dialogRef.close(type);
+  }
+  reset() {
+    this.formdata = this.loginForm.value;
+    console.log(this.formdata['email']);
+    this.authService
+      .forgotPassword(this.formdata['email'])
+      .subscribe((response) => {
+        console.log(response);
+
+        if (response['message'] === 'Password reset email sent') {
+          this.closeDialogWithData('reset');
+          this.router.navigate(['/register/reset-password']);
+        }
+      });
+  }
 }

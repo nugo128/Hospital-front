@@ -4,6 +4,6 @@
     <app-input [placeholder]="'ელ.ფოსტა/ ტელეფონის ნომერი'" [width]="377" formControlName="email"></app-input>
     <app-input [placeholder]="'პაროლი'" [inputType]="'password'" [width]="377" formControlName="password"></app-input>
 </form>
-    <p>პაროლის აღდგენა</p>
+    <p (click)="reset()">პაროლის აღდგენა</p>
     <app-button [text]="'შესვლა'" [width]="180" (click)="onSubmit()"></app-button>
 </mat-dialog-content>

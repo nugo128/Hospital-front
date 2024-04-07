@@ -15,6 +15,10 @@ const routes: Routes = [
         path: 'verify',
         component: RegistrationComponent,
       },
+      {
+        path: 'reset-password',
+        component: RegistrationComponent,
+      },
     ],
   },
 ];
