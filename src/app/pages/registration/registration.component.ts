@@ -86,12 +86,13 @@ export class RegistrationComponent implements OnInit {
           }
         });
     } else {
-      this.formdata.append('email', this.registrationForm.value.email);
-      this.formdata.append('name', this.registrationForm.value.name);
-      this.formdata.append('lastname', this.registrationForm.value.lastname);
-      this.formdata.append('idNumber', this.registrationForm.value.idNumber);
-      this.formdata.append('password', this.registrationForm.value.password);
-      this.formdata.append('image', this.registrationForm.value.image);
+      Object.entries(this.registrationForm.value).forEach(([key, value]) => {
+        if (typeof value === 'string') {
+          this.formdata.append(key, value);
+        } else if (value instanceof File) {
+          this.formdata.append(key, value, value.name);
+        }
+      });
 
       this.authService.register(this.formdata).subscribe((resp) => {
         console.log(resp);
