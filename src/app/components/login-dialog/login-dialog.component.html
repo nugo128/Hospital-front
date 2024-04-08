@@ -3,7 +3,14 @@
 <form  [formGroup]="loginForm">
     <app-input [placeholder]="'ელ.ფოსტა/ ტელეფონის ნომერი'" [width]="377" formControlName="email"></app-input>
     <app-input [placeholder]="'პაროლი'" [inputType]="'password'" [width]="377" formControlName="password"></app-input>
+    <app-input *ngIf="twoStepActive" [placeholder]="'აქტივაციის კოდი'" [width]="377" formControlName="code"></app-input>
 </form>
-    <p (click)="reset()">პაროლის აღდგენა</p>
-    <app-button [text]="'შესვლა'" [width]="180" (click)="onSubmit()"></app-button>
+    <p (click)="reset()" *ngIf="!twoStepActive else resendCode">პაროლის აღდგენა</p>
+    <ng-template #resendCode>
+        <p (click)="onSubmit()" *ngIf="twoStepActive">resend</p>
+    </ng-template>
+    <app-button *ngIf="!twoStepActive else confirm" [text]="'შესვლა'" [width]="180" (click)="onSubmit()"></app-button>
+    <ng-template #confirm>
+        <app-button [text]="'დადასტურება'" [width]="180" (click)="onVerify()"></app-button>
+    </ng-template>
 </mat-dialog-content>

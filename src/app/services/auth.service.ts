@@ -17,6 +17,12 @@ export class AuthService {
   login(formData) {
     return this.http.post(`${BASE_API_URL}/users/login`, formData);
   }
+  verifyTwoStep(email, code) {
+    return this.http.post(
+      `${BASE_API_URL}/users/verify-two-step?email=${email}&code=${code}`,
+      {}
+    );
+  }
   forgotPassword(email) {
     return this.http.post(
       `${BASE_API_URL}/users/forgot-password?email=${email}`,
