@@ -2,8 +2,21 @@
 <mat-dialog-content class="mat-typography">
 <form  [formGroup]="loginForm">
     <app-input [placeholder]="'ელ.ფოსტა/ ტელეფონის ნომერი'" [width]="377" formControlName="email"></app-input>
+    <div *ngIf="loginForm.get('email').errors">
+        <div class="error" *ngFor="let error of getErrors(loginForm.get('email'))">
+          {{ validationMessages['email'][error] }}
+        </div>
+    </div>
     <app-input [placeholder]="'პაროლი'" [inputType]="'password'" [width]="377" formControlName="password"></app-input>
+    <div *ngIf="loginForm.get('password').errors">
+        <div class="error" *ngFor="let error of getErrors(loginForm.get('password'))">
+          {{ validationMessages['password'][error] }}
+        </div>
+    </div>
     <app-input *ngIf="twoStepActive" [placeholder]="'აქტივაციის კოდი'" [width]="377" formControlName="code"></app-input>
+    <div *ngIf="errorMessage" class="error">
+        {{ errorMessage }}
+      </div>
 </form>
     <p (click)="reset()" *ngIf="!twoStepActive else resendCode">პაროლის აღდგენა</p>
     <ng-template #resendCode>

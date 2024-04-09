@@ -1,5 +1,5 @@
 h2 {
-  margin: 50px 110px 30px 110px;
+  margin: 50px 110px 0px 110px;
   font-size: 26px;
   font-weight: 500;
   color: #18a4e1;
@@ -22,4 +22,8 @@ p {
   color: #053354;
   font-size: 14px;
   font-weight: 400;
+}
+.error {
+  color: #ff2c52;
+  font-size: 14px;
 }

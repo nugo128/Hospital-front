@@ -14,10 +14,21 @@ import {
   styleUrl: './login-dialog.component.css',
 })
 export class LoginDialogComponent {
+  errorMessage: string;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   loginForm: FormGroup;
   twoStepActive = false;
+  validationMessages = {
+    email: {
+      required: 'მეილი სავალდებულოა',
+      email: 'მეილის ფორმატი არასწორია',
+    },
+    password: {
+      required: 'პაროლი სავალდებულოა',
+      minlength: 'პაროლი უნდა შედგებოდეს მინიმუმ 8 სიმბოლოსგან',
+    },
+  };
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -27,7 +38,7 @@ export class LoginDialogComponent {
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required, Validators.minLength(8)],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       code: [''],
     });
   }
@@ -35,7 +46,12 @@ export class LoginDialogComponent {
   closeDialogWithData(type: string): void {
     this.dialogRef.close(type);
   }
+  getErrors(control) {
+    return Object.keys(control.errors);
+  }
   onSubmit() {
+    this.errorMessage = '';
+    console.log(this.loginForm.get('password').errors);
     this.formdata = this.loginForm.value;
     if (this.loginForm.valid) {
       this.authService.login(this.formdata).subscribe({
@@ -58,7 +74,7 @@ export class LoginDialogComponent {
           }
         },
         error: (err) => {
-          console.log(err);
+          this.errorMessage = err.error;
         },
       });
     }
@@ -70,10 +86,9 @@ export class LoginDialogComponent {
         next: (resp) => {
           localStorage.setItem('token', resp['token']);
           this.dialogRef.close();
-          console.log(resp);
         },
         error: (err) => {
-          console.log(err);
+          this.errorMessage = err.error;
         },
       });
   }
