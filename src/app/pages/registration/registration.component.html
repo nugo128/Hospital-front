@@ -2,14 +2,60 @@
     <h2 class="header">რეგისტრაცია</h2>
     <form [formGroup]="registrationForm">
         <div class="row1">
+            <div class="input-container">
             <app-input [label]="'სახელი'" [placeholder]="'(მინიმუმ 5 სიმბოლო)'" formControlName="name"></app-input>
-            <app-input [label]="'Email'" [placeholder]="'Email'" formControlName="email"></app-input>
+            <div *ngIf="registrationForm.get('name').errors && (registrationForm.get('name').dirty || this.touched)">
+                <div class="error" *ngFor="let error of getErrors(registrationForm.get('name'))">
+                  {{ validationMessages['name'][error] }}
+                </div>
+              </div>
+              </div>
+            <div class="input-container">
+                <app-input [label]="'Email'" [placeholder]="'Email'" formControlName="email"></app-input>
+            <div *ngIf="registrationForm.get('email').errors && (registrationForm.get('email').dirty || this.touched)">
+                <div class="error" *ngFor="let error of getErrors(registrationForm.get('email'))">
+                  {{ validationMessages['email'][error] }}
+                </div>
+              </div>
+            </div>
+            
+            <div class="input-container">
             <app-input [label]="'პირადი ნომერი'" [placeholder]="'00000000000'" formControlName="idNumber"></app-input>
+            <div *ngIf="registrationForm.get('idNumber').errors && (registrationForm.get('idNumber').dirty || this.touched)">
+                <div class="error" *ngFor="let error of getErrors(registrationForm.get('idNumber'))">
+                  {{ validationMessages['idNumber'][error] }}
+                </div>
+              </div>
+
+              </div>
         </div>
         <div class="row2">
+            
+            <div class="input-container">
             <app-input [label]="'გვარი'" [placeholder]="'გვარი'" formControlName="lastName"></app-input>
+            <div *ngIf="registrationForm.get('lastName').errors && (registrationForm.get('lastName').dirty || this.touched)">
+                <div class="error" *ngFor="let error of getErrors(registrationForm.get('lastName'))">
+                  {{ validationMessages['lastName'][error] }}
+                </div>
+              </div>
+
+            </div>
+            <div class="input-container">
             <app-input [label]="'აქტივაციის კოდი'" [placeholder]="'აქტივაციის კოდი'" formControlName="code"></app-input>
+            <div *ngIf="errorMessage" class="error">
+                {{ errorMessage }}
+              </div>
+
+              </div>
+              <div class="input-container">
             <app-input [label]="'პაროლი'" [placeholder]="'( მინიმუმ 8 სიმბოლო : @ 7 , )'" formControlName="password"></app-input>
+            <div *ngIf="registrationForm.get('password').errors && (registrationForm.get('password').dirty || this.touched)">
+                <div class="error" *ngFor="let error of getErrors(registrationForm.get('password'))">
+                  {{ validationMessages['password'][error] }}
+                </div>
+              </div>
+
+              </div>
             <app-input *ngIf="currentUrl === '/register/reset-password'" [label]="'გაიმეორეთ პაროლი'" [placeholder]="'( მინიმუმ 8 სიმბოლო : @ 7 , )'" formControlName="repeatPassword"></app-input>
         </div>
         <app-button [text]="currentUrl === '/register/reset-password' ?  'დადასტურება' : 'რეგისტრაცია'" class="btn" (click)="onSubmit()"></app-button>

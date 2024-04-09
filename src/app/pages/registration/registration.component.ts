@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import {
@@ -18,6 +18,30 @@ export class RegistrationComponent implements OnInit {
   currentUrl: string = '';
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+  errorMessage: string;
+  touched: boolean = false;
+  validationMessages = {
+    email: {
+      required: 'ელ. ფოსტა აუცილებელია.',
+      email: 'გთხოვთ, შეიყვანოთ სწორი ელ. ფოსტა.',
+    },
+    name: {
+      required: 'სახელი აუცილებელია.',
+      minlength: 'სახელი უნდა იყოს მინიმუმ 5 სიმბოლო.',
+    },
+    lastName: {
+      required: 'გვარი აუცილებელია.',
+    },
+    idNumber: {
+      required: 'პირადი ნომერი აუცილებელია.',
+      minlength: 'პირადი ნომერი უნდა იყოს 11 სიმბოლო.',
+      maxlength: 'პირადი ნომერი უნდა იყოს 11 სიმბოლო.',
+    },
+    password: {
+      required: 'პაროლი აუცილებელია.',
+      minlength: 'პაროლი უნდა იყოს მინიმუმ 8 სიმბოლო.',
+    },
+  };
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -32,16 +56,27 @@ export class RegistrationComponent implements OnInit {
       }
     });
     this.registrationForm = this.fb.group({
-      email: [''],
-      name: [''],
-      lastName: [''],
-      idNumber: [''],
-      password: [''],
+      email: ['', [Validators.required, Validators.email]],
+      name: ['', [Validators.required, Validators.minLength(5)]],
+      lastName: ['', [Validators.required]],
+      idNumber: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(11),
+          Validators.maxLength(11),
+        ],
+      ],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       repeatPassword: [''],
       image: [null],
       code: [''],
     });
   }
+  getErrors(control) {
+    return Object.keys(control.errors);
+  }
+
   ngOnInit() {
     console.log(12);
     this.currentUrl = this.router.url;
@@ -63,6 +98,7 @@ export class RegistrationComponent implements OnInit {
   }
   formdata = new FormData();
   onSubmit() {
+    this.errorMessage = '';
     if (this.router.url === '/register/reset-password') {
       this.authService
         .resetPassword(
@@ -70,20 +106,25 @@ export class RegistrationComponent implements OnInit {
           this.registrationForm.value.password,
           this.registrationForm.value.repeatPassword
         )
-        .subscribe((resp) => {
-          if (resp['message'] === 'Password reset successfully') {
-            this.registrationForm.patchValue({
-              code: '',
-              password: '',
-              repeatPassword: '',
-            });
-            this.router.navigate(['/']);
-            this._snackbar.open('პაროლი წარმატებით შეიცვალა!', 'დახურვა', {
-              horizontalPosition: this.horizontalPosition,
-              verticalPosition: this.verticalPosition,
-              duration: 5000,
-            });
-          }
+        .subscribe({
+          next: (resp) => {
+            if (resp['message'] === 'Password reset successfully') {
+              this.registrationForm.patchValue({
+                code: '',
+                password: '',
+                repeatPassword: '',
+              });
+              this.router.navigate(['/']);
+              this._snackbar.open('პაროლი წარმატებით შეიცვალა!', 'დახურვა', {
+                horizontalPosition: this.horizontalPosition,
+                verticalPosition: this.verticalPosition,
+                duration: 5000,
+              });
+            }
+          },
+          error: (err) => {
+            this.errorMessage = err.error;
+          },
         });
     } else {
       Object.entries(this.registrationForm.value).forEach(([key, value]) => {
@@ -93,10 +134,19 @@ export class RegistrationComponent implements OnInit {
           this.formdata.append(key, value, value.name);
         }
       });
-
-      this.authService.register(this.formdata).subscribe((resp) => {
-        console.log(resp);
-      });
+      this.touched = true;
+      if (this.registrationForm.valid) {
+        this.authService.register(this.formdata).subscribe({
+          next: (resp) => {
+            this.touched = false;
+            console.log(resp);
+          },
+          error: (err) => {
+            this.errorMessage = err.error;
+            console.log(err);
+          },
+        });
+      }
     }
   }
 }

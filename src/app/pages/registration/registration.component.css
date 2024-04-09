@@ -20,3 +20,9 @@ form {
 .btn {
   align-self: flex-end;
 }
+.error {
+  color: #ff2c52;
+  font-size: 14px;
+  margin-left: 5px;
+  margin-top: 10px;
+}
