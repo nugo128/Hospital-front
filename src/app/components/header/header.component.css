@@ -21,6 +21,7 @@ nav {
   display: flex;
   gap: 10px;
   border-bottom: 1px solid #ecf2f8;
+  margin-right: 70px;
 }
 nav a {
   text-decoration: none;
@@ -94,4 +95,16 @@ nav a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.user {
+  display: flex;
+  padding: 5px 10px;
+  background-color: #f0faff;
+  border-radius: 25px;
+  align-items: center;
+  gap: 20px;
+  min-width: 210px;
+}
+.user img {
+  width: 40px;
 }

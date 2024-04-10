@@ -2,13 +2,13 @@
 <mat-dialog-content class="mat-typography">
 <form  [formGroup]="loginForm">
     <app-input [placeholder]="'ელ.ფოსტა/ ტელეფონის ნომერი'" [width]="377" formControlName="email"></app-input>
-    <div *ngIf="loginForm.get('email').errors">
+    <div *ngIf="loginForm.get('email').errors &&  (loginForm.get('email').dirty || this.touched)">
         <div class="error" *ngFor="let error of getErrors(loginForm.get('email'))">
           {{ validationMessages['email'][error] }}
         </div>
     </div>
     <app-input [placeholder]="'პაროლი'" [inputType]="'password'" [width]="377" formControlName="password"></app-input>
-    <div *ngIf="loginForm.get('password').errors">
+    <div *ngIf="loginForm.get('password').errors && (loginForm.get('password').dirty || this.touched)">
         <div class="error" *ngFor="let error of getErrors(loginForm.get('password'))">
           {{ validationMessages['password'][error] }}
         </div>

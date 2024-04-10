@@ -19,6 +19,7 @@ export class LoginDialogComponent {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   loginForm: FormGroup;
   twoStepActive = false;
+  touched: boolean = false;
   validationMessages = {
     email: {
       required: 'მეილი სავალდებულოა',
@@ -50,16 +51,18 @@ export class LoginDialogComponent {
     return Object.keys(control.errors);
   }
   onSubmit() {
+    this.touched = true;
     this.errorMessage = '';
     console.log(this.loginForm.get('password').errors);
     this.formdata = this.loginForm.value;
     if (this.loginForm.valid) {
       this.authService.login(this.formdata).subscribe({
         next: (resp) => {
-          console.log(resp);
+          this.touched = false;
           if (resp['token']) {
+            console.log(resp);
             localStorage.setItem('token', resp['token']);
-            this.dialogRef.close();
+            this.closeDialogWithData('login');
           } else {
             this.twoStepActive = true;
             this._snackbar.open(
@@ -84,8 +87,9 @@ export class LoginDialogComponent {
       .verifyTwoStep(this.loginForm.value.email, this.loginForm.value.code)
       .subscribe({
         next: (resp) => {
+          console.log(resp);
           localStorage.setItem('token', resp['token']);
-          this.dialogRef.close();
+          this.closeDialogWithData('login');
         },
         error: (err) => {
           this.errorMessage = err.error;

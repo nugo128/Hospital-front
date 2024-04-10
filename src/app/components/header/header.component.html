@@ -13,9 +13,20 @@
         <a routerLink="#">მედიკამენტები</a>
         <a routerLink="#">კონტაქტი</a>
     </nav>
-    <div class="auth">
+    <div class="auth" *ngIf="!loggedInUser else user">
         <p><span class="login" (click)="openDialog()">ავტორიზაცია</span> / <a routerLink="register" class="register">რეგისტრაცია</a></p>
     </div>
+    <ng-template #user>
+        <div class="user">
+            <img *ngIf="loggedInUser['role'] === 'user' else doctor" src="../../../assets/images/profile-picture.png" alt="">
+            <p *ngIf="loggedInUser['role'] === 'user'">მომხმარებელი</p>
+            <ng-template #doctor>
+                <img [src]="loggedInUser.image" alt="">
+                <p *ngIf="loggedInUser['role'] === 'user'">{{loggedInUser['name']}} {{loggedInUser['lastName']}}</p>
+            </ng-template>
+        </div>
+    </ng-template>
+
     <div class="language">
         <p>ENG</p>
     </div>
