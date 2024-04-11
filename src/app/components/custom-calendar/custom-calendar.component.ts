@@ -1,13 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BookingService } from '../../services/bookings.service';
+import { AuthService } from '../../services/auth.service';
 interface TimeSlot {
   time: string;
 }
 
-interface BookedSlot {
-  date: string;
-  time: string;
-}
 @Component({
   selector: 'app-custom-calendar',
   templateUrl: './custom-calendar.component.html',
@@ -19,8 +16,12 @@ export class CustomCalendarComponent implements OnInit {
   weekEnd: Date;
   days: Date[] = [];
   timeSlots: TimeSlot[] = [];
-  bookedSlots: BookedSlot[] = [];
+  bookedSlots: any = [];
   now = new Date();
+  loggedInUser: any = null;
+  pleaseLogIn = false;
+  approveBooking = false;
+  bookingData = {};
   @Input() id = 0;
   startOfMonth = new Date(
     this.currentDate.getFullYear(),
@@ -28,16 +29,28 @@ export class CustomCalendarComponent implements OnInit {
     1
   );
 
-  constructor(private bookingService: BookingService) {
+  constructor(
+    private bookingService: BookingService,
+    private authService: AuthService
+  ) {
     this.calculateWeek();
     this.generateTimeSlots();
   }
   ngOnInit(): void {
+    this.authService.currentUser.subscribe((user) => {
+      this.loggedInUser = user;
+    });
     this.bookingService.doctor(this.id).subscribe((resp) => {
+      console.log(resp);
       for (let i = 0; i < resp['length']; i++) {
         const dateString = resp[i].bookingDate.split('T')[0];
 
-        this.bookedSlots.push({ date: dateString, time: resp[i].time });
+        this.bookedSlots.push({
+          date: dateString,
+          time: resp[i].time,
+          doctorId: resp[i]['doctorId'],
+          userId: resp[i]['userId'],
+        });
       }
     });
   }
@@ -91,11 +104,36 @@ export class CustomCalendarComponent implements OnInit {
       (s) => s.date === dateString && s.time === slot.time
     );
     if (index > -1) {
+      this.approveBooking = false;
       this.bookedSlots.splice(index, 1);
     } else {
-      this.bookedSlots.push({ date: dateString, time: slot.time });
-      console.log(this.bookedSlots);
+      if (this.loggedInUser) {
+        const data = {
+          date: dateString,
+          time: slot.time,
+          userId: this.loggedInUser.id,
+          doctorId: +this.id,
+        };
+        this.bookedSlots.push(data);
+        this.bookingData = data;
+        this.approveBooking = true;
+      } else {
+        this.pleaseLogIn = true;
+        console.log(2);
+        setTimeout(() => {
+          this.pleaseLogIn = false;
+        }, 5000);
+      }
     }
+  }
+  description: string = '';
+  submit() {
+    this.bookingData['description'] = this.description;
+    this.bookingData['bookingDate'] = this.bookingData['date'];
+
+    this.bookingService.book(this.bookingData).subscribe((resp) => {
+      this.approveBooking = false;
+    });
   }
   isWeekend(day: Date, slot: string): boolean {
     const dayOfWeek = day.getDay();
@@ -124,9 +162,25 @@ export class CustomCalendarComponent implements OnInit {
       (s) => s.date === dateString && s.time === slot.time
     );
   }
+  isBookedByUser(date: Date, slot: TimeSlot): boolean {
+    const dateString = date.toISOString().split('T')[0];
+    const loggedInUserId = this.loggedInUser?.id;
+    return this.bookedSlots.some(
+      (s) =>
+        s.date === dateString &&
+        s.time === slot.time &&
+        s.userId === loggedInUserId
+    );
+  }
 
   getSlotClass(date: Date, slot: TimeSlot) {
-    return this.isBooked(date, slot) ? 'booked' : '';
+    if (this.isBookedByUser(date, slot)) {
+      return 'my';
+    } else if (this.isBooked(date, slot)) {
+      return 'booked';
+    } else {
+      return '';
+    }
   }
 
   nextWeek() {

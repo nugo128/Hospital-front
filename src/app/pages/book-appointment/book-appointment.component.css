@@ -84,3 +84,47 @@
 .description p span {
   color: #18a4e1;
 }
+.calendar {
+  display: flex;
+  gap: 50px;
+}
+.buttons {
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.edit svg {
+  width: 28px;
+}
+.edit {
+  border: none;
+  background-color: #ecf2f8;
+  width: 230px;
+  height: 50px;
+  border-radius: 50px;
+  color: #18a4e1;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.delete {
+  border: none;
+  background-color: #ff93a6;
+  width: 170px;
+  height: 50px;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.delete svg {
+  width: 28px;
+}

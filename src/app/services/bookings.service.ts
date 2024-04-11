@@ -11,4 +11,7 @@ export class BookingService {
   doctor(id) {
     return this.http.get(`${BASE_API_URL}/Bookings/${id}`);
   }
+  book(data) {
+    return this.http.post(`${BASE_API_URL}/Bookings/`, data);
+  }
 }

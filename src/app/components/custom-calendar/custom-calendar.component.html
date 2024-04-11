@@ -30,7 +30,7 @@
           <td [ngClass]="getSlotClass(day, slot)" 
               [class.weekend]="isWeekend(day,slot)"
               (click)="!isWeekend(day,slot) && bookSlot(day, slot)">
-            <span *ngIf="isBooked(day, slot)" class="booked-text"></span>
+            <span *ngIf="isBookedByUser(day, slot)" class="booked-text">ჩემი ჯავშანი</span>
             <span *ngIf="!isBooked(day, slot) && !isWeekend(day,slot)" class="booked-text"><span class="plus">+</span> დაჯავშნა</span>
           </td>
         </ng-container>
@@ -38,4 +38,15 @@
       
     </tbody>
   </table>
+  <div *ngIf="pleaseLogIn" class="pleaseLogIn">
+    <p class="t1">დასაჯავშნად გთხოვთ გაიაროთ</p>
+    <p class="t2">ავტორიზაცია ან რეგისტრაცია</p>
+  </div>
+  <div *ngIf="approveBooking" class="approve-booking">
+    <p class="want">გსურთ ვიზიტის დაჯავშნა ?</p>
+    <p class="problem">შეგიძლიათ მიუთუთოთ თქვენი პორბლემა</p>
+
+    <textarea [(ngModel)]="description" name="description" placeholder="აღწერა..."></textarea>
+    <button (click)="submit()">დაჯავშნა</button>
+  </div>
 </div>
