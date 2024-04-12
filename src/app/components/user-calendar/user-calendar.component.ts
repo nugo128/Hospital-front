@@ -26,6 +26,9 @@ export class UserCalendarComponent {
   timeSlots: TimeSlot[] = [];
   now = new Date();
   edit: boolean = false;
+  deleteBooking: boolean = false;
+  delete: boolean = false;
+  deleteId: number = 0;
   bookingData = {};
   startOfMonth = new Date(
     this.currentDate.getFullYear(),
@@ -46,10 +49,8 @@ export class UserCalendarComponent {
   }
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
-      console.log(param['id']);
       this.bookingService.user(param['id']).subscribe((resp) => {
         this.bookedSlots = resp;
-        console.log(resp);
       });
     });
   }
@@ -101,22 +102,36 @@ export class UserCalendarComponent {
     const index = this.bookedSlots.findIndex(
       (s) => s.bookingDate.split('T')[0] === dateString && s.time === slot.time
     );
-    console.log(index);
-    console.log(console.log(this.bookedSlots[index]));
     if (this.edit && index !== -1) {
       this.editBooking = true;
       this.valuesToEdit = this.bookedSlots[index];
     }
+    if (this.delete && index !== -1) {
+      this.deleteBooking = true;
+      this.deleteId = this.bookedSlots[index]['id'];
+    }
+  }
+  submitDelete() {
+    this.bookingService.delete(this.deleteId).subscribe((resp) => {
+      const index = this.bookedSlots.findIndex((s) => s.id === this.deleteId);
+      this.bookedSlots.splice(index, 1);
+      this.delete = false;
+      this.deleteBooking = false;
+      this.deleteId = 0;
+      this._snackbar.open('ჯავშანი წარმატებით წაიშალა!', 'დახურვა', {
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+        duration: 5000,
+      });
+    });
   }
   submit() {
-    console.log(this.valuesToEdit);
     if (this.description) {
       this.valuesToEdit['description'] = this.description;
     }
     this.bookingService
       .edit(this.valuesToEdit['id'], this.valuesToEdit)
       .subscribe((resp) => {
-        console.log(resp);
         this.edit = false;
         this.editBooking = false;
         this.valuesToEdit = {};
@@ -160,5 +175,13 @@ export class UserCalendarComponent {
     this.edit = !this.edit;
     this.editBooking = false;
     this.valuesToEdit = {};
+    this.delete = false;
+    this.deleteBooking = false;
+  }
+  toggleDelete() {
+    this.delete = !this.delete;
+    this.deleteBooking = false;
+    this.editBooking = false;
+    this.edit = false;
   }
 }

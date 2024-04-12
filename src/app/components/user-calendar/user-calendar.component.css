@@ -58,6 +58,7 @@ td:hover {
   display: inline-block;
   max-width: 100px;
   border: none;
+  position: relative;
 }
 .weekend {
   background-color: #fffff5;
@@ -83,7 +84,8 @@ td:hover {
 .t2 {
   color: #053354;
 }
-.approve-booking {
+.approve-booking,
+.approve-delete {
   width: 420px;
   position: absolute;
   top: 40%;
@@ -144,7 +146,8 @@ td:hover {
   align-items: center;
   gap: 20px;
 }
-.editOn {
+.editOn,
+.no {
   background-color: #4fff7e;
   color: #006d9c;
 }
@@ -162,10 +165,37 @@ td:hover {
   align-items: center;
   gap: 20px;
 }
+.deleteOn,
+.yes {
+  background-color: #ff244c;
+}
 .delete svg {
   width: 28px;
 }
 .edit-description {
   color: #0533544d;
   margin-left: 30px;
+}
+.del {
+  position: absolute;
+  bottom: 25px;
+  width: 20px;
+  height: 20px;
+  color: red;
+  background-color: white;
+  border-radius: 50%;
+  padding: 2px;
+}
+.yes,
+.no {
+  border: none;
+  padding: 10px 40px;
+  color: #fff;
+}
+
+.approve-delete div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }

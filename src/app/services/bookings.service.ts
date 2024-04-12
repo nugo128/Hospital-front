@@ -20,4 +20,7 @@ export class BookingService {
   edit(id, data) {
     return this.http.put(`${BASE_API_URL}/Bookings/${id}`, data);
   }
+  delete(id) {
+    return this.http.delete(`${BASE_API_URL}/Bookings/${id}`);
+  }
 }
