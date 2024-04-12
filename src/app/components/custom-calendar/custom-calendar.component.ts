@@ -130,7 +130,6 @@ export class CustomCalendarComponent implements OnInit {
   submit() {
     this.bookingData['description'] = this.description;
     this.bookingData['bookingDate'] = this.bookingData['date'];
-
     this.bookingService.book(this.bookingData).subscribe((resp) => {
       this.approveBooking = false;
     });

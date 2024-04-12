@@ -14,4 +14,7 @@ export class BookingService {
   book(data) {
     return this.http.post(`${BASE_API_URL}/Bookings/`, data);
   }
+  user(id) {
+    return this.http.get(`${BASE_API_URL}/Bookings/User/${id}`);
+  }
 }

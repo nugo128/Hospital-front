@@ -24,6 +24,7 @@ import {
 import { HttpClientModule } from '@angular/common/http';
 import { BookAppointmentComponent } from './pages/book-appointment/book-appointment.component';
 import { CustomCalendarComponent } from './components/custom-calendar/custom-calendar.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { CustomCalendarComponent } from './components/custom-calendar/custom-cal
     LoginDialogComponent,
     BookAppointmentComponent,
     CustomCalendarComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

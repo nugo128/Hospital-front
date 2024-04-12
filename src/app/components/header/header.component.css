@@ -104,6 +104,7 @@ nav a {
   align-items: center;
   gap: 20px;
   min-width: 210px;
+  cursor: pointer;
 }
 .user img {
   width: 40px;
