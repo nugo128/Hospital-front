@@ -13,6 +13,7 @@ export class UserProfileComponent implements OnInit {
   categories;
   loggedInUser;
   bookings;
+  id;
   constructor(
     private categoryService: CategoryService,
     private authService: AuthService,
@@ -25,6 +26,7 @@ export class UserProfileComponent implements OnInit {
       console.log(param['id']);
       this.bookingService.user(param['id']).subscribe((resp) => {
         this.bookings = resp;
+        this.id = param['id'];
       });
     });
 

@@ -1,0 +1,171 @@
+.calendar {
+  width: 870px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+th,
+td {
+  border: 1px solid #ecf2f8;
+  padding: 8px;
+  text-align: center;
+  background-color: white;
+  height: 60px;
+  width: 100px;
+}
+
+th {
+  background-color: #ecf2f8;
+  border: none;
+}
+
+td {
+  cursor: pointer;
+}
+
+td:hover {
+  background-color: #f0f0f0;
+}
+
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  align-self: flex-start;
+  margin-left: 50px;
+  gap: 40px;
+}
+.my {
+  background-color: #dafaee;
+  border-radius: 10px;
+  max-width: 100px;
+  text-wrap: wrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.booked-text {
+  white-space: normal;
+  display: inline-block;
+  max-width: 100px;
+  border: none;
+}
+.weekend {
+  background-color: #fffff5;
+}
+.controls button,
+.change-week {
+  border-radius: 50%;
+  background-color: #fff;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0px 4px 10px 0px #0533540d;
+}
+.change-week {
+  margin-left: 5px;
+  width: 25px;
+  height: 25px;
+}
+.t1 {
+  color: #ff2c52;
+}
+.t2 {
+  color: #053354;
+}
+.approve-booking {
+  width: 420px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  box-shadow: 0px 4px 30px 0px #05335433;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.want {
+  color: #3acf99;
+}
+.problem {
+  color: #053354;
+}
+.approve-booking p {
+  font-size: 16px;
+  font-weight: 400;
+}
+.approve-booking textarea {
+  border: 1px solid #ecf2f8;
+  height: 90px;
+  gap: 0px;
+  border-radius: 10px;
+}
+.approve-booking button {
+  border: none;
+  background-color: #3acf99;
+  border-radius: 50px;
+  padding: 10px 15px;
+  width: 170px;
+  align-self: flex-end;
+  color: #fff;
+}
+.buttons {
+  margin-top: 15px;
+  display: flex;
+  align-self: flex-end;
+  gap: 30px;
+}
+.edit svg {
+  width: 28px;
+}
+.edit {
+  border: none;
+  background-color: #ecf2f8;
+  width: 230px;
+  height: 50px;
+  border-radius: 50px;
+  color: #18a4e1;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.editOn {
+  background-color: #4fff7e;
+  color: #006d9c;
+}
+.delete {
+  border: none;
+  background-color: #ff93a6;
+  width: 170px;
+  height: 50px;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.delete svg {
+  width: 28px;
+}
+.edit-description {
+  color: #0533544d;
+  margin-left: 30px;
+}

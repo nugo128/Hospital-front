@@ -17,4 +17,7 @@ export class BookingService {
   user(id) {
     return this.http.get(`${BASE_API_URL}/Bookings/User/${id}`);
   }
+  edit(id, data) {
+    return this.http.put(`${BASE_API_URL}/Bookings/${id}`, data);
+  }
 }

@@ -25,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BookAppointmentComponent } from './pages/book-appointment/book-appointment.component';
 import { CustomCalendarComponent } from './components/custom-calendar/custom-calendar.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { UserCalendarComponent } from './components/user-calendar/user-calendar.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
     BookAppointmentComponent,
     CustomCalendarComponent,
     UserProfileComponent,
+    UserCalendarComponent,
   ],
   imports: [
     BrowserModule,
