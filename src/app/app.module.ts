@@ -27,6 +27,7 @@ import { CustomCalendarComponent } from './components/custom-calendar/custom-cal
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { UserCalendarComponent } from './components/user-calendar/user-calendar.component';
 import { DoctorProfileComponent } from './pages/doctor-profile/doctor-profile.component';
+import { DoctorCalendarComponent } from './components/doctor-calendar/doctor-calendar.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { DoctorProfileComponent } from './pages/doctor-profile/doctor-profile.co
     UserProfileComponent,
     UserCalendarComponent,
     DoctorProfileComponent,
+    DoctorCalendarComponent,
   ],
   imports: [
     BrowserModule,
