@@ -17,12 +17,12 @@
         <p><span class="login" (click)="openDialog()">ავტორიზაცია</span> / <a routerLink="register" class="register">რეგისტრაცია</a></p>
     </div>
     <ng-template #user>
-        <div class="user" [routerLink]="'user-profile/'+loggedInUser?.id">
+        <div class="user" [routerLink]="loggedInUser['role'] === 'user'?'user-profile/'+loggedInUser?.id : 'doctor-profile/'+loggedInUser?.id">
             <img *ngIf="loggedInUser['role'] === 'user' else doctor" src="../../../assets/images/profile-picture.png" alt="">
-            <p *ngIf="loggedInUser['role'] === 'user'">მომხმარებელი</p>
+            <p *ngIf="loggedInUser['role'] === 'user'">{{loggedInUser['name']}} {{loggedInUser['lastName']}}</p>
             <ng-template #doctor>
-                <img [src]="loggedInUser.image" alt="">
-                <p *ngIf="loggedInUser['role'] === 'user'">{{loggedInUser['name']}} {{loggedInUser['lastName']}}</p>
+                <img [src]="loggedInUser.image ? loggloggedInUser.image : '../../../assets/images/profile-picture.png'" alt="">
+                <p *ngIf="loggedInUser['role'] === 'doctor'">{{loggedInUser['name']}} {{loggedInUser['lastName']}}</p>
             </ng-template>
         </div>
     </ng-template>

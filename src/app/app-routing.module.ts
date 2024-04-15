@@ -4,6 +4,7 @@ import { RegistrationComponent } from './pages/registration/registration.compone
 import { MainComponent } from './pages/main/main.component';
 import { BookAppointmentComponent } from './pages/book-appointment/book-appointment.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { DoctorProfileComponent } from './pages/doctor-profile/doctor-profile.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
     ],
   },
   { path: 'user-profile/:id', component: UserProfileComponent },
+  { path: 'doctor-profile/:id', component: DoctorProfileComponent },
 ];
 
 @NgModule({
