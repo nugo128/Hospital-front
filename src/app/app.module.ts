@@ -28,6 +28,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { UserCalendarComponent } from './components/user-calendar/user-calendar.component';
 import { DoctorProfileComponent } from './pages/doctor-profile/doctor-profile.component';
 import { DoctorCalendarComponent } from './components/doctor-calendar/doctor-calendar.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { DoctorCalendarComponent } from './components/doctor-calendar/doctor-cal
     UserCalendarComponent,
     DoctorProfileComponent,
     DoctorCalendarComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

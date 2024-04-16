@@ -42,6 +42,7 @@ export class RegistrationComponent implements OnInit {
       minlength: 'პაროლი უნდა იყოს მინიმუმ 8 სიმბოლო.',
     },
   };
+  registerDoctor: boolean = false;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -69,6 +70,7 @@ export class RegistrationComponent implements OnInit {
       ],
       password: ['', [Validators.required, Validators.minLength(8)]],
       repeatPassword: [''],
+      category: [''],
       image: [null],
       code: [''],
     });
@@ -81,6 +83,9 @@ export class RegistrationComponent implements OnInit {
     console.log(12);
     this.currentUrl = this.router.url;
     console.log(this.router.url);
+    if (this.router.url === '/admin/registration') {
+      this.registerDoctor = true;
+    }
     if (this.router.url === '/register/verify') {
       this.route.queryParams.subscribe((params) => {
         console.log(params);
@@ -97,6 +102,24 @@ export class RegistrationComponent implements OnInit {
     }
   }
   formdata = new FormData();
+  abc(event) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.formdata.append('image', file, file.name);
+      console.log(this.formdata.get('image'));
+    }
+  }
+  onDoctorSubmit() {
+    Object.entries(this.registrationForm.value).forEach(([key, value]) => {
+      if (typeof value === 'string') {
+        this.formdata.append(key, value);
+      }
+    });
+    console.log(this.formdata.get('image'));
+    this.authService.register(this.formdata).subscribe((resp) => {
+      console.log(resp);
+    });
+  }
   onSubmit() {
     this.errorMessage = '';
     if (this.router.url === '/register/reset-password') {
