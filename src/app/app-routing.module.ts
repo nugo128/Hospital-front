@@ -6,6 +6,7 @@ import { BookAppointmentComponent } from './pages/book-appointment/book-appointm
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { DoctorProfileComponent } from './pages/doctor-profile/doctor-profile.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { AdminDoctorsComponent } from './pages/admin-doctors/admin-doctors.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -29,7 +30,10 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    children: [{ path: 'registration', component: RegistrationComponent }],
+    children: [
+      { path: 'registration', component: RegistrationComponent },
+      { path: 'doctors', component: AdminDoctorsComponent },
+    ],
   },
 ];
 
