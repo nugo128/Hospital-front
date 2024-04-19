@@ -65,21 +65,29 @@
             <app-input *ngIf="currentUrl === '/register/reset-password'" [label]="'გაიმეორეთ პაროლი'" [placeholder]="'( მინიმუმ 8 სიმბოლო : @ 7 , )'" formControlName="repeatPassword"></app-input>
             <div class="file-container" *ngIf="registerDoctor">
               <span>ფოტოსურათი</span>
-              <input type="file" id="fileInput" class="file-input"  (change)="abc($event)"/>
+              <input type="file" id="fileInput" class="file-input"  (change)="uploadFile($event)"/>
               <label for="fileInput" class="custom-button"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M5 19H19V5H5V19ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z" fill="#053354" fill-opacity="0.3"/>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M9 14L11.03 16.71L14 13L18 18H6" fill="#053354" fill-opacity="0.3"/>
                 </svg>
                 </label>
+                
+                  <div *ngIf="touched && photoError" class="error">
+                    ფოტოსურათი აუცილებელია
+                  </div>
+                
             </div>
             <div class="file-container" *ngIf="registerDoctor">
               <span>CV</span>
-              <input type="file" id="fileInput" class="file-input"  (change)="abc($event)"/>
-              <label for="fileInput" class="custom-button"><svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <input type="file" id="fileInputCV" class="file-input"  (change)="uploadFile($event)"/>
+              <label for="fileInputCV" class="custom-button"><svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 0C1.94434 0 0.25 1.69434 0.25 3.75V16.25C0.25 18.3057 1.94434 20 4 20H7.75C8.43848 20 9 19.4385 9 18.75C9 18.0615 8.43848 17.5 7.75 17.5H4C3.28711 17.5 2.75 16.9629 2.75 16.25V3.75C2.75 3.03711 3.28711 2.5 4 2.5H10.9824L15.25 6.76758V7.5C15.25 8.18848 15.8115 8.75 16.5 8.75C17.1885 8.75 17.75 8.18848 17.75 7.5V6.25C17.75 5.91797 17.6182 5.60059 17.3838 5.36621L12.3838 0.366211C12.1494 0.131836 11.832 0 11.5 0L4 0ZM12.75 10V13.75H9V16.25H12.75V20H15.25V16.25H19V13.75H15.25V10H12.75Z" fill="#053354" fill-opacity="0.3"/>
                 </svg>
                 
                 </label>
+                <div *ngIf="touched && fileError" class="error">
+                  CV აუცილებელია
+                </div>
             </div>
         </div>
         <app-button *ngIf="!registerDoctor" [text]="currentUrl === '/register/reset-password' ?  'დადასტურება' : 'რეგისტრაცია'" class="btn" (click)="onSubmit()"></app-button>

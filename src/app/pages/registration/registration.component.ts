@@ -20,6 +20,9 @@ export class RegistrationComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   errorMessage: string;
   touched: boolean = false;
+  photoError: boolean = true;
+  fileError: boolean = true;
+
   validationMessages = {
     email: {
       required: 'ელ. ფოსტა აუცილებელია.',
@@ -80,19 +83,23 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(12);
     this.currentUrl = this.router.url;
-    console.log(this.router.url);
     if (this.router.url === '/admin/registration') {
       this.registerDoctor = true;
     }
-    if (this.router.url === '/register/verify') {
+
+    if (this.router.url.split('?')[0] === '/register/verify') {
       this.route.queryParams.subscribe((params) => {
         console.log(params);
         this.authService.verify(params.token).subscribe(
           (resp) => {
             console.log(resp['message']);
             this.router.navigate(['/']);
+            this._snackbar.open('ვერიფიკაცია წარმატებით დასრულდა!', 'დახურვა', {
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+              duration: 5000,
+            });
           },
           (error) => {
             console.error(error);
@@ -102,11 +109,16 @@ export class RegistrationComponent implements OnInit {
     }
   }
   formdata = new FormData();
-  abc(event) {
+  uploadFile(event) {
     const file: File = event.target.files[0];
     if (file) {
-      this.formdata.append('image', file, file.name);
-      console.log(this.formdata.get('image'));
+      if (event.target.id === 'fileInputCV') {
+        this.formdata.append('CV', file, file.name);
+        this.fileError = false;
+      } else {
+        this.formdata.append('image', file, file.name);
+        this.photoError = false;
+      }
     }
   }
   onDoctorSubmit() {
@@ -115,12 +127,38 @@ export class RegistrationComponent implements OnInit {
         this.formdata.append(key, value);
       }
     });
-    console.log(this.formdata.get('image'));
-    this.authService.register(this.formdata).subscribe((resp) => {
-      console.log(resp);
+    this.touched = true;
+    console.log(this.registrationForm.value);
+    this.authService.register(this.formdata).subscribe({
+      next: (resp) => {
+        console.log(resp);
+        this.photoError = false;
+        this.fileError = false;
+      },
+      error: (err) => {
+        if (err.status) {
+          console.log('HTTP Status Code:', err.status);
+        } else if (err instanceof Error) {
+          console.log('Error:', err.message);
+        } else {
+          this._snackbar.open(
+            'ექიმი წარმატებით დარეგისტრირდა! აქტივაციის კოდი გამოგზავნილია მეილზე',
+            'დახურვა',
+            {
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+              duration: 5000,
+            }
+          );
+          this.router.navigate(['/admin']);
+          console.log('Unknown Error:', err);
+        }
+      },
     });
   }
   onSubmit() {
+    this.photoError = false;
+    this.fileError = false;
     this.errorMessage = '';
     if (this.router.url === '/register/reset-password') {
       this.authService
