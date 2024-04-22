@@ -30,6 +30,7 @@ import { DoctorProfileComponent } from './pages/doctor-profile/doctor-profile.co
 import { DoctorCalendarComponent } from './components/doctor-calendar/doctor-calendar.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { AdminDoctorsComponent } from './pages/admin-doctors/admin-doctors.component';
+import { EditDoctorComponent } from './pages/edit-doctor/edit-doctor.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AdminDoctorsComponent } from './pages/admin-doctors/admin-doctors.compo
     DoctorCalendarComponent,
     AdminComponent,
     AdminDoctorsComponent,
+    EditDoctorComponent,
   ],
   imports: [
     BrowserModule,

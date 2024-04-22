@@ -13,4 +13,7 @@ export class UserService {
   user(id) {
     return this.http.get(`${BASE_API_URL}/users/${id}`);
   }
+  edit(id, data) {
+    return this.http.put(`${BASE_API_URL}/users/${id}`, data);
+  }
 }
