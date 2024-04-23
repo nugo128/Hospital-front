@@ -32,6 +32,7 @@ img {
   font-size: 14px;
 }
 input {
+  padding: 7px 0px;
   border: none;
   background-color: transparent;
 }
@@ -123,4 +124,11 @@ input {
   height: 100%;
   opacity: 0;
   cursor: pointer;
+}
+.passwords {
+  display: flex;
+  flex-direction: column;
+}
+.error {
+  color: red;
 }

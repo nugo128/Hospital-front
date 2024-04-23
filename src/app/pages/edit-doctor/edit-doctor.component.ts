@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
-
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { EditEmailDialogComponent } from '../../components/edit-email-dialog/edit-email-dialog.component';
 @Component({
   selector: 'app-edit-doctor',
   templateUrl: './edit-doctor.component.html',
@@ -13,10 +19,15 @@ export class EditDoctorComponent implements OnInit {
   editEmail: boolean = false;
   editPassword: boolean = false;
   editBookings: boolean = false;
-
+  idNumberValue: string = '';
+  emailValue: string = '';
+  passwordValue: string = '';
+  repeatPasswordValue: string = '';
+  errorMessage: string;
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +63,40 @@ export class EditDoctorComponent implements OnInit {
       });
     }
   }
+  openDialog() {
+    const dialogRef = this.dialog.open(EditEmailDialogComponent, {
+      data: { id: this.user.id, email: this.user.email },
+      panelClass: 'custom-dialog-container',
+      height: '450px',
+      width: '600px',
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      console.log(res);
+    });
+  }
+  update() {
+    if (this.idNumberValue) {
+      this.formdata.append('IdNumber', this.idNumberValue);
+    }
+    if (this.passwordValue && this.repeatPasswordValue) {
+      this.formdata.append('password', this.passwordValue);
+      this.formdata.append('repeatPassword', this.repeatPasswordValue);
+    }
+    if (this.editId || this.editPassword) {
+      this.userService.edit(this.user.id, this.formdata).subscribe({
+        next: (resp) => {
+          this.editEmail = false;
+          this.editId = false;
+          this.editPassword = false;
+          this.errorMessage = '';
+        },
+        error: (err) => {
+          console.log(err);
+          this.errorMessage = err.error.message;
+        },
+      });
+    }
+  }
   renderCategoryNames(): string {
     if (!this.user || !this.user.categories) return '';
     return this.user.categories.map((cat) => cat.name).join('/');
@@ -61,6 +106,7 @@ export class EditDoctorComponent implements OnInit {
   }
   toggleEditEmail() {
     this.editEmail = !this.editEmail;
+    this.openDialog();
   }
   toggleEditPassword() {
     this.editPassword = !this.editPassword;

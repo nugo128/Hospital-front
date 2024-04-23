@@ -16,4 +16,26 @@ export class UserService {
   edit(id, data) {
     return this.http.put(`${BASE_API_URL}/users/${id}`, data);
   }
+  changeEmail(id) {
+    return this.http.post(`${BASE_API_URL}/users/change-email?id=${id}`, '');
+  }
+  verifyCode(id, code) {
+    return this.http.post(
+      `${BASE_API_URL}/users/change-email-verify?id=${id}&code=${code}`,
+      ''
+    );
+  }
+
+  newEmail(id, code) {
+    return this.http.post(
+      `${BASE_API_URL}/users/set-email?id=${id}&newEmail=${code}`,
+      ''
+    );
+  }
+  verifyNewEmail(id, code, email) {
+    return this.http.post(
+      `${BASE_API_URL}/users/new-email-verify?id=${id}&code=${code}&email=${email}`,
+      ''
+    );
+  }
 }

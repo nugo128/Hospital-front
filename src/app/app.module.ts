@@ -31,6 +31,7 @@ import { DoctorCalendarComponent } from './components/doctor-calendar/doctor-cal
 import { AdminComponent } from './pages/admin/admin.component';
 import { AdminDoctorsComponent } from './pages/admin-doctors/admin-doctors.component';
 import { EditDoctorComponent } from './pages/edit-doctor/edit-doctor.component';
+import { EditEmailDialogComponent } from './components/edit-email-dialog/edit-email-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { EditDoctorComponent } from './pages/edit-doctor/edit-doctor.component';
     AdminComponent,
     AdminDoctorsComponent,
     EditDoctorComponent,
+    EditEmailDialogComponent,
   ],
   imports: [
     BrowserModule,

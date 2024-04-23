@@ -1,0 +1,25 @@
+<div class="main">
+    <h2>ელ.ფოსტის შეცვლა</h2>
+
+<div class="inputs" *ngIf="emailVerificationCodeSent">
+    <label for="">შეიყვანეთ ვერიფიკაციის კოდი</label>
+    <input type="text" [(ngModel)]="oldEmailCode">
+    <button (click)="verifyCode()">დადასტურება</button>
+</div>
+
+<div class="inputs" *ngIf="oldEmailVerified">
+    <label for="">შეიყვანეთ ახალი მეილი</label>
+    <input type="text" [(ngModel)]="newEmail">
+    <button (click)="enterNewEmail()">დადასტურება</button>
+</div>
+
+
+<div class="inputs" *ngIf="newEmailCodeSent">
+    <label for="">შეიყვანეთ ახალ მეილზე გამოგზავნილი კოდი</label>
+    <input type="text" [(ngModel)]="newEmailCode">
+    <button (click)="verifyNewCode()">დადასტურება</button>
+</div>
+
+<h2 *ngIf="succesfullyChanged">გილოცავთ! მეილი წარმატებით შეიცვალა!</h2>
+<p class="error">{{errorMessage}}</p>
+</div>
