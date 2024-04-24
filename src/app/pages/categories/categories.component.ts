@@ -11,10 +11,12 @@ export class CategoriesComponent implements OnInit {
   idToEdit: number = 0;
   delete: boolean = false;
   categories: any;
+  editText: string;
+  deleteId: number;
+  errorMessage: string;
   constructor(private categoryService: CategoryService) {}
   ngOnInit(): void {
     this.categoryService.categories().subscribe((resp) => {
-      console.log(resp);
       this.categories = resp;
     });
   }
@@ -22,7 +24,38 @@ export class CategoriesComponent implements OnInit {
     this.idToEdit = id;
     this.edit = !this.edit;
   }
-  toggleDelete() {
-    this.delete = !this.delete;
+  deleteCategory(id) {
+    this.errorMessage = '';
+    this.delete = true;
+    this.deleteId = id;
+  }
+  confirmDelete() {
+    this.categoryService.deleteCategory(this.deleteId).subscribe({
+      next: (resp) => {
+        this.errorMessage = '';
+        const index = this.categories.findIndex(
+          (cat) => cat.id === this.deleteId
+        );
+        this.categories.splice(index, 1);
+        this.delete = false;
+      },
+      error: (err) => {
+        this.errorMessage = err.error.message;
+        this.delete = false;
+      },
+    });
+  }
+  cancelDelete() {
+    this.delete = false;
+    this.deleteId = 0;
+    this.errorMessage = '';
+  }
+  editCategory(id) {
+    this.categoryService.editCategory(id, this.editText).subscribe((resp) => {
+      const index = this.categories.findIndex((cat) => cat.id === id);
+      this.categories[index].name = this.editText;
+      this.editText = '';
+      this.edit = false;
+    });
   }
 }
