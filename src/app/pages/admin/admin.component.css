@@ -39,3 +39,6 @@
 .active span {
   color: #18a4e1;
 }
+.activated {
+  background-color: #f0faff;
+}

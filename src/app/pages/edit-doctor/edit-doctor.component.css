@@ -132,3 +132,14 @@ input {
 .error {
   color: red;
 }
+.main-cont {
+  display: flex;
+  gap: 50px;
+}
+.deleteOn {
+  background-color: #ff244c;
+}
+.editOn {
+  background-color: #4fff7e;
+  color: #006d9c;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import {
@@ -8,12 +8,14 @@ import {
 } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { EditEmailDialogComponent } from '../../components/edit-email-dialog/edit-email-dialog.component';
+import { AdminCalendarComponent } from '../../components/admin-calendar/admin-calendar.component';
 @Component({
   selector: 'app-edit-doctor',
   templateUrl: './edit-doctor.component.html',
   styleUrl: './edit-doctor.component.css',
 })
 export class EditDoctorComponent implements OnInit {
+  @ViewChild(AdminCalendarComponent) childComponent: AdminCalendarComponent;
   user: any;
   editId: boolean = false;
   editEmail: boolean = false;
@@ -24,6 +26,8 @@ export class EditDoctorComponent implements OnInit {
   passwordValue: string = '';
   repeatPasswordValue: string = '';
   errorMessage: string;
+  edittingOn: boolean = false;
+  deletingOn: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -113,5 +117,19 @@ export class EditDoctorComponent implements OnInit {
   }
   toggleEditBookings() {
     this.editBookings = !this.editBookings;
+  }
+  editting() {
+    this.edittingOn = !this.edittingOn;
+    this.deletingOn = false;
+  }
+  deleting() {
+    this.deletingOn = !this.deletingOn;
+    this.edittingOn = false;
+  }
+  recieveDeleteOff() {
+    this.deletingOn = false;
+  }
+  recieveEdittingOff() {
+    this.edittingOn = false;
   }
 }

@@ -32,6 +32,7 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { AdminDoctorsComponent } from './pages/admin-doctors/admin-doctors.component';
 import { EditDoctorComponent } from './pages/edit-doctor/edit-doctor.component';
 import { EditEmailDialogComponent } from './components/edit-email-dialog/edit-email-dialog.component';
+import { AdminCalendarComponent } from './components/admin-calendar/admin-calendar.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { EditEmailDialogComponent } from './components/edit-email-dialog/edit-em
     AdminDoctorsComponent,
     EditDoctorComponent,
     EditEmailDialogComponent,
+    AdminCalendarComponent,
   ],
   imports: [
     BrowserModule,
