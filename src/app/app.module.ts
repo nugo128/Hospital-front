@@ -33,6 +33,7 @@ import { AdminDoctorsComponent } from './pages/admin-doctors/admin-doctors.compo
 import { EditDoctorComponent } from './pages/edit-doctor/edit-doctor.component';
 import { EditEmailDialogComponent } from './components/edit-email-dialog/edit-email-dialog.component';
 import { AdminCalendarComponent } from './components/admin-calendar/admin-calendar.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { AdminCalendarComponent } from './components/admin-calendar/admin-calend
     EditDoctorComponent,
     EditEmailDialogComponent,
     AdminCalendarComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,

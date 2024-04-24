@@ -8,6 +8,7 @@ import { DoctorProfileComponent } from './pages/doctor-profile/doctor-profile.co
 import { AdminComponent } from './pages/admin/admin.component';
 import { AdminDoctorsComponent } from './pages/admin-doctors/admin-doctors.component';
 import { EditDoctorComponent } from './pages/edit-doctor/edit-doctor.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
       { path: 'registration', component: RegistrationComponent },
       { path: 'doctors', component: AdminDoctorsComponent },
       { path: 'doctors/:id', component: EditDoctorComponent },
+      { path: 'categories', component: CategoriesComponent },
     ],
   },
 ];

@@ -17,7 +17,7 @@
         <p><span class="login" (click)="openDialog()">ავტორიზაცია</span> / <a routerLink="register" class="register">რეგისტრაცია</a></p>
     </div>
     <ng-template #user>
-        <div class="user" [routerLink]="loggedInUser['role'] === 'user' ? 'user-profile/' + loggedInUser?.id : loggedInUser['role'] === 'doctor' ? 'doctor-profile/' + loggedInUser?.id : 'admin'">
+        <div class="user" [routerLink]="loggedInUser['role'] === 'user' ? 'user-profile/' + loggedInUser?.id : loggedInUser['role'] === 'doctor' ? 'doctor-profile/' + loggedInUser?.id : 'admin/doctors'">
             <img [src]="loggedInUser.image ? loggloggedInUser.image : '../../../assets/images/profile-picture.png'" alt="">
             <p>{{ loggedInUser.role ==='user' || loggedInUser.role ==='doctor' ? loggedInUser['name'] + loggedInUser['lastName'] : 'ადმინისტრატორი' }}</p>
         </div>

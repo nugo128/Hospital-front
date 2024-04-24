@@ -16,6 +16,7 @@ import { filter } from 'rxjs/operators';
 })
 export class AdminComponent {
   url: string;
+  doctor: boolean = false;
   constructor(private router: Router, private urlSerializer: UrlSerializer) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -23,14 +24,17 @@ export class AdminComponent {
         const urlTree = this.router.parseUrl(event.url);
         const urlSegmentGroup: UrlSegmentGroup =
           urlTree.root.children['primary'];
-        const segments: UrlSegment[] = urlSegmentGroup.segments;
+        const segments: UrlSegment[] = urlSegmentGroup?.segments;
         const baseRoute =
           '/' +
           segments
-            .slice(0, 2)
+            ?.slice(0, 2)
             .map((segment) => segment.path)
             .join('/');
         this.url = baseRoute;
+        if (segments[2]) {
+          this.doctor = !isNaN(Number(segments[2]?.path));
+        }
       });
   }
 }
