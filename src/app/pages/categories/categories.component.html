@@ -1,8 +1,8 @@
 <div class="categories">
-    <h2 class="header">კატეგორიები</h2>
+    <h2 class="header">{{"categories"|translate}}</h2>
     <div class="all-categories">
         <div class="headers">
-            <h3>კატეგორია</h3>
+            <h3>{{"category"|translate}}</h3>
         </div>
         <div class="category">
         <div *ngFor="let category of categories">
@@ -10,9 +10,9 @@
                 <h3>{{category?.name}}</h3>
                 <p *ngIf="errorMessage && deleteId === category?.id">{{errorMessage}}</p>
                 <div class="edit-cont" *ngIf="edit && idToEdit === category?.id">
-                    <label for="">შეიყვანეთ კატეგორიის სახელი</label>
+                    <label for="">{{"enter category name"|translate}}</label>
                     <input type="text" [(ngModel)]="editText">
-                    <button (click)="editCategory(category?.id)">შეცვლა</button>
+                    <button (click)="editCategory(category?.id)">{{"change"|translate}}</button>
                 
                 </div>
                 <div class="buttons">
@@ -28,9 +28,9 @@
         </div>
     </div>
     <div class="approve-delete" *ngIf="delete">
-        <h2>ნამდვილად გსურთ კატეგორიის წაშლა??</h2>
+        <h2>{{"do you really want to delete categor"|translate}}?</h2>
         <div>
-            <button class="yes" (click)="confirmDelete()">დიახ</button><button class="no" (click)="cancelDelete()">არა</button>
+            <button class="yes" (click)="confirmDelete()">{{"yes"|translate}}</button><button class="no" (click)="cancelDelete()">{{"no"|translate}}</button>
         </div>
       </div>
 </div>

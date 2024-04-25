@@ -1,29 +1,29 @@
-<h2>ავტორიზაცია</h2>
+<h2>{{'authorization'|translate}}</h2>
 <mat-dialog-content class="mat-typography">
 <form  [formGroup]="loginForm">
-    <app-input [placeholder]="'ელ.ფოსტა/ ტელეფონის ნომერი'" [width]="377" formControlName="email"></app-input>
+    <app-input [placeholder]="'email/phone'|translate" [width]="377" formControlName="email"></app-input>
     <div *ngIf="loginForm.get('email').errors &&  (loginForm.get('email').dirty || this.touched)">
         <div class="error" *ngFor="let error of getErrors(loginForm.get('email'))">
           {{ validationMessages['email'][error] }}
         </div>
     </div>
-    <app-input [placeholder]="'პაროლი'" [inputType]="'password'" [width]="377" formControlName="password"></app-input>
+    <app-input [placeholder]="'password'|translate" [inputType]="'password'" [width]="377" formControlName="password"></app-input>
     <div *ngIf="loginForm.get('password').errors && (loginForm.get('password').dirty || this.touched)">
         <div class="error" *ngFor="let error of getErrors(loginForm.get('password'))">
           {{ validationMessages['password'][error] }}
         </div>
     </div>
-    <app-input *ngIf="twoStepActive" [placeholder]="'აქტივაციის კოდი'" [width]="377" formControlName="code"></app-input>
+    <app-input *ngIf="twoStepActive" [placeholder]="'activation code'|translate" [width]="377" formControlName="code"></app-input>
     <div *ngIf="errorMessage" class="error">
         {{ errorMessage }}
       </div>
 </form>
-    <p (click)="reset()" *ngIf="!twoStepActive else resendCode">პაროლის აღდგენა</p>
+    <p (click)="reset()" *ngIf="!twoStepActive else resendCode">{{'reset password' |translate}}</p>
     <ng-template #resendCode>
-        <p (click)="onSubmit()" *ngIf="twoStepActive">resend</p>
+        <p (click)="onSubmit()" *ngIf="twoStepActive">{{'resend' |translate}}</p>
     </ng-template>
-    <app-button *ngIf="!twoStepActive else confirm" [text]="'შესვლა'" [width]="180" (click)="onSubmit()"></app-button>
+    <app-button *ngIf="!twoStepActive else confirm" [text]="'log in'|translate" [width]="180" (click)="onSubmit()"></app-button>
     <ng-template #confirm>
-        <app-button [text]="'დადასტურება'" [width]="180" (click)="onVerify()"></app-button>
+        <app-button [text]="'submit'|translate" [width]="180" (click)="onVerify()"></app-button>
     </ng-template>
 </mat-dialog-content>

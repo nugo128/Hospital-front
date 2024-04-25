@@ -1,9 +1,9 @@
 <div class="registration" [class.remove]="registerDoctor">
-    <h2 class="header">რეგისტრაცია</h2>
+    <h2 class="header">{{'registration'|translate}}</h2>
     <form [formGroup]="registrationForm">
         <div class="row1">
             <div class="input-container">
-            <app-input [label]="'სახელი'" [placeholder]="'(მინიმუმ 5 სიმბოლო)'" formControlName="name"></app-input>
+            <app-input [label]="'name'|translate" [placeholder]="'name min 5 symbols'|translate" formControlName="name"></app-input>
             <div *ngIf="registrationForm.get('name').errors && (registrationForm.get('name').dirty || this.touched)">
                 <div class="error" *ngFor="let error of getErrors(registrationForm.get('name'))">
                   {{ validationMessages['name'][error] }}
@@ -20,7 +20,7 @@
             </div>
             
             <div class="input-container">
-            <app-input [label]="'პირადი ნომერი'" [placeholder]="'00000000000'" formControlName="idNumber"></app-input>
+            <app-input [label]="'ID number'|translate" [placeholder]="'00000000000'" formControlName="idNumber"></app-input>
             <div *ngIf="registrationForm.get('idNumber').errors && (registrationForm.get('idNumber').dirty || this.touched)">
                 <div class="error" *ngFor="let error of getErrors(registrationForm.get('idNumber'))">
                   {{ validationMessages['idNumber'][error] }}
@@ -32,7 +32,7 @@
         <div class="row2">
             
             <div class="input-container">
-            <app-input [label]="'გვარი'" [placeholder]="'გვარი'" formControlName="lastName"></app-input>
+            <app-input [label]="'lastname'|translate" [placeholder]="'lastname'|translate" formControlName="lastName"></app-input>
             <div *ngIf="registrationForm.get('lastName').errors && (registrationForm.get('lastName').dirty || this.touched)">
                 <div class="error" *ngFor="let error of getErrors(registrationForm.get('lastName'))">
                   {{ validationMessages['lastName'][error] }}
@@ -41,7 +41,7 @@
 
             </div>
             <div class="input-container" *ngIf="!registerDoctor">
-            <app-input [label]="'აქტივაციის კოდი'" [placeholder]="'აქტივაციის კოდი'" formControlName="code"></app-input>
+            <app-input [label]="'activation code'|translate" [placeholder]="'activation code'|translate" formControlName="code"></app-input>
             <div *ngIf="errorMessage" class="error">
                 {{ errorMessage }}
               </div>
@@ -49,7 +49,7 @@
               </div>
               <div class="input-container">
                 
-                <app-input [label]="'პაროლი'" [placeholder]="'( მინიმუმ 8 სიმბოლო : @ 7 , )'" formControlName="password"></app-input>
+                <app-input [label]="'password'|translate" [placeholder]="'password placeholder'|translate" formControlName="password"></app-input>
 
               
             <div *ngIf="registrationForm.get('password').errors && (registrationForm.get('password').dirty || this.touched)">
@@ -60,11 +60,11 @@
 
               </div>
               <div class="input-container">
-                <app-input *ngIf="registerDoctor" [label]="'კატეგორია'" [placeholder]="'ანესთეზიოლოგი / თერაპევტი ან სხვა...'" formControlName="category"></app-input>
+                <app-input *ngIf="registerDoctor" [label]="'category'|translate" [placeholder]="'category placeholder'|translate" formControlName="category"></app-input>
               </div>
-            <app-input *ngIf="currentUrl === '/register/reset-password'" [label]="'გაიმეორეთ პაროლი'" [placeholder]="'( მინიმუმ 8 სიმბოლო : @ 7 , )'" formControlName="repeatPassword"></app-input>
+            <app-input *ngIf="currentUrl === '/register/reset-password'" [label]="'repeat password'|translate" [placeholder]="'password placeholder'|translate" formControlName="repeatPassword"></app-input>
             <div class="file-container" *ngIf="registerDoctor">
-              <span>ფოტოსურათი</span>
+              <span>{{'photo'|translate}}</span>
               <input type="file" id="fileInput" class="file-input"  (change)="uploadFile($event)"/>
               <label for="fileInput" class="custom-button"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M5 19H19V5H5V19ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z" fill="#053354" fill-opacity="0.3"/>
@@ -73,7 +73,7 @@
                 </label>
                 
                   <div *ngIf="touched && photoError" class="error">
-                    ფოტოსურათი აუცილებელია
+                    {{'photo required'|translate}}
                   </div>
                 
             </div>
@@ -86,11 +86,11 @@
                 
                 </label>
                 <div *ngIf="touched && fileError" class="error">
-                  CV აუცილებელია
+                  {{'cv required'|translate}}
                 </div>
             </div>
         </div>
-        <app-button *ngIf="!registerDoctor" [text]="currentUrl === '/register/reset-password' ?  'დადასტურება' : 'რეგისტრაცია'" class="btn" (click)="onSubmit()"></app-button>
-        <app-button *ngIf="registerDoctor" [text]="'რეგისტრაცია'" class="btn" (click)="onDoctorSubmit()"></app-button>
+        <app-button *ngIf="!registerDoctor" [text]="currentUrl === '/register/reset-password' ?  'submit' : 'registration' |translate" class="btn" (click)="onSubmit()"></app-button>
+        <app-button *ngIf="registerDoctor" [text]="'registration'|translate" class="btn" (click)="onDoctorSubmit()"></app-button>
     </form>
 </div>

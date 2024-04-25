@@ -2,18 +2,18 @@
 <div class="hospital-image">
     <div class="hospital-info">
         <div class="info">
-            <h2 class="title">აირჩიე კლინიკა რომელსაც შეგიძლია ენდო</h2>
+            <h2 class="title">{{'choose clinic'|translate}}</h2>
             <div class="address"><svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.95 29.55C9.75 28.35 0 18.3 0 12C0 5.4 5.4 0 12 0C18.6 0 24 5.4 24 12C24 18.3 14.25 28.35 13.05 29.55C12.45 30.15 11.55 30.15 10.95 29.55ZM12 3C7.05 3 3 7.05 3 12C3 15.75 8.7 22.8 12 26.25C15.3 22.8 21 15.75 21 12C21 7.05 16.95 3 12 3Z" fill="#18A4E1"/>
                 <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="#18A4E1"/>
                 </svg>
-                <p>იაკობ ნიკოლაძე №10</p></div>
+                <p>{{'iakob nikoladze'|translate}} №10</p></div>
         </div>
     </div>
 </div>
 <div class="main-content">
     <div class="categories">
-        <h3>კატეგორიები</h3>
+        <h3>{{'categories'|translate}}</h3>
         <svg width="250" height="2" viewBox="0 0 250 2" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 1H250" stroke="#ECF2F8"/>
         </svg>
@@ -23,7 +23,7 @@
         <svg class="line" width="250" height="2" viewBox="0 0 250 2" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 1H250" stroke="#ECF2F8"/>
         </svg>
-        <p class="view-full">სრულად ნახვა <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <p class="view-full">{{'view all'|translate}} <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M13.0667 1.91667L7.46667 7.53334C7.4 7.60001 7.32778 7.64712 7.25 7.67467C7.17222 7.70267 7.08889 7.71667 7 7.71667C6.91111 7.71667 6.82778 7.70267 6.75 7.67467C6.67222 7.64712 6.6 7.60001 6.53333 7.53334L0.916668 1.91667C0.761112 1.76112 0.683334 1.56667 0.683334 1.33334C0.683334 1.10001 0.766668 0.900008 0.933334 0.733342C1.1 0.566675 1.29445 0.483342 1.51667 0.483342C1.73889 0.483342 1.93333 0.566675 2.1 0.733342L7 5.63334L11.9 0.733342C12.0556 0.577786 12.2471 0.500008 12.4747 0.500008C12.7027 0.500008 12.9 0.583342 13.0667 0.750008C13.2333 0.916675 13.3167 1.11112 13.3167 1.33334C13.3167 1.55556 13.2333 1.75001 13.0667 1.91667Z" fill="#18A4E1"/>
             </svg>
         </p>
@@ -34,7 +34,7 @@
             <app-doctor-card *ngIf="doctor.role === 'doctor'"  [name]="doctor.name + ' ' + doctor.lastName" [position]="doctor.categories" [image]="doctor.image" [starCount]="doctor.rating" [id]="doctor.id" ></app-doctor-card>
         </ng-container>
         <div class="see-all">
-            <p>სრულად ნახვა</p>
+            <p>{{'view all'|translate}}</p>
             <div class="see"></div>
         </div>
     </div>

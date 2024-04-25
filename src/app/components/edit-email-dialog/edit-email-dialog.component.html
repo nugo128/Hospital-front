@@ -1,25 +1,25 @@
 <div class="main">
-    <h2>ელ.ფოსტის შეცვლა</h2>
+    <h2>{{"change email"|translate}}</h2>
 
 <div class="inputs" *ngIf="emailVerificationCodeSent">
-    <label for="">შეიყვანეთ ვერიფიკაციის კოდი</label>
+    <label for="">{{"enter verification code"|translate}}</label>
     <input type="text" [(ngModel)]="oldEmailCode">
-    <button (click)="verifyCode()">დადასტურება</button>
+    <button (click)="verifyCode()">{{"submit"|translate}}</button>
 </div>
 
 <div class="inputs" *ngIf="oldEmailVerified">
-    <label for="">შეიყვანეთ ახალი მეილი</label>
+    <label for="">{{"enter new email"|translate}}</label>
     <input type="text" [(ngModel)]="newEmail">
-    <button (click)="enterNewEmail()">დადასტურება</button>
+    <button (click)="enterNewEmail()">{{"submit"|translate}}</button>
 </div>
 
 
 <div class="inputs" *ngIf="newEmailCodeSent">
-    <label for="">შეიყვანეთ ახალ მეილზე გამოგზავნილი კოდი</label>
+    <label for="">{{"enter code from new mail"|translate}}</label>
     <input type="text" [(ngModel)]="newEmailCode">
-    <button (click)="verifyNewCode()">დადასტურება</button>
+    <button (click)="verifyNewCode()">{{"submit"|translate}}</button>
 </div>
 
-<h2 *ngIf="succesfullyChanged">გილოცავთ! მეილი წარმატებით შეიცვალა!</h2>
+<h2 *ngIf="succesfullyChanged">{{"email changed successfully"|translate}}</h2>
 <p class="error">{{errorMessage}}</p>
 </div>

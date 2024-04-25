@@ -30,7 +30,7 @@
             <td [ngClass]="getSlotClass(day, slot)" 
                 [class.weekend]="isWeekend(day,slot)"
                 (click)="!isWeekend(day,slot) && bookSlot(day, slot)">
-              <span *ngIf="isBooked(day, slot)" class="booked-text">დაჯავშნილია <span class="del" *ngIf="delete">X</span> </span>
+              <span *ngIf="isBooked(day, slot)" class="booked-text">{{"booked"|translate}} <span class="del" *ngIf="delete">X</span> </span>
               <span *ngIf="!isBooked(day, slot) && !isWeekend(day,slot)" class="booked-text"></span>
             </td>
           </ng-container>
@@ -40,21 +40,21 @@
     </table>
     <div class="view-booking" *ngIf="viewBooking">
         <span class="close" (click)="closeView()">X</span>
-        <h2>სახელი: <span>{{viewData?.user?.name}}</span></h2>
-        <h2>გვარი: <span>{{viewData?.user?.lastName}}</span></h2>
-        <h2>აღწერე: <span>{{viewData?.description}}</span></h2>
+        <h2>{{'name'|translate}}: <span>{{viewData?.user?.name}}</span></h2>
+        <h2>{{'lastname'|translate}}: <span>{{viewData?.user?.lastName}}</span></h2>
+        <h2>{{'description'|translate}}: <span>{{viewData?.description}}</span></h2>
     </div>
     <div *ngIf="editBooking" class="approve-booking">
-        <p class="want">გსურთ აღწერის ცვლილება ?</p>
-        <p class="problem">შეგიძლიათ მიუთუთოთ თქვენი პორბლემა</p>
+        <p class="want">{{"do you want to change description"|translate}} ?</p>
+        <p class="problem">{{"you can enter your problem"|translate}}</p>
     
         <textarea [(ngModel)]="description" name="description" placeholder="აღწერა..."></textarea>
-        <button (click)="submit()">შეცვლა</button>
+        <button (click)="submit()">{{"edit"|translate}}</button>
       </div>
       <div class="approve-delete" *ngIf="deleteBooking">
-        <h2>ნამდვილად გსურთ ჯავშანის გაუქმება?</h2>
+        <h2>{{"do you really want to delete booking"|translate}}?</h2>
         <div>
-            <button class="yes" (click)="submitDelete()">დიახ</button><button class="no" (click)="toggleDelete()">არა</button>
+            <button class="yes" (click)="submitDelete()">{{"yes"|translate}}</button><button class="no" (click)="toggleDelete()">{{"no"|translate}}</button>
         </div>
       </div>
   </div>

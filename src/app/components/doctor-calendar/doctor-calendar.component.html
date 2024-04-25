@@ -30,7 +30,7 @@
             <td [ngClass]="getSlotClass(day, slot)" 
                 [class.weekend]="isWeekend(day,slot)"
                 (click)="!isWeekend(day,slot) && bookSlot(day, slot)">
-              <span *ngIf="isBooked(day, slot)" class="booked-text">დაჯავშნილია <span class="del" *ngIf="delete">X</span> </span>
+              <span *ngIf="isBooked(day, slot)" class="booked-text">{{'booked'|translate}} <span class="del" *ngIf="delete">X</span> </span>
               <span *ngIf="!isBooked(day, slot) && !isWeekend(day,slot)" class="booked-text"></span>
             </td>
           </ng-container>
@@ -43,28 +43,28 @@
             <button class="edit" (click)="toggleEdit()" [class.editOn]="edit"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
               </svg>
-              <span>რედაქტირება</span></button>
-              <span class="edit-description">*აღწერის ცვლილება</span>
+              <span>{{"edit"|translate}}</span></button>
+              <span class="edit-description">*{{'edit booking'|translate}}</span>
         </div>
-        <button class="delete" [class.deleteOn]="delete" (click)="toggleDelete()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff" viewBox="0 0 256 256"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-42.34-82.34L139.31,152l18.35,18.34a8,8,0,0,1-11.32,11.32L128,163.31l-18.34,18.35a8,8,0,0,1-11.32-11.32L116.69,152,98.34,133.66a8,8,0,0,1,11.32-11.32L128,140.69l18.34-18.35a8,8,0,0,1,11.32,11.32Z"></path></svg> <span>წაშლა</span></button>
+        <button class="delete" [class.deleteOn]="delete" (click)="toggleDelete()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff" viewBox="0 0 256 256"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-42.34-82.34L139.31,152l18.35,18.34a8,8,0,0,1-11.32,11.32L128,163.31l-18.34,18.35a8,8,0,0,1-11.32-11.32L116.69,152,98.34,133.66a8,8,0,0,1,11.32-11.32L128,140.69l18.34-18.35a8,8,0,0,1,11.32,11.32Z"></path></svg> <span>{{"delete"|translate}}</span></button>
     </div>
     <div class="view-booking" *ngIf="viewBooking">
         <span class="close" (click)="closeView()">X</span>
-        <h2>სახელი: <span>{{viewData?.user?.name}}</span></h2>
-        <h2>გვარი: <span>{{viewData?.user?.lastName}}</span></h2>
-        <h2>აღწერე: <span>{{viewData?.description}}</span></h2>
+        <h2>{{"name"|translate}}: <span>{{viewData?.user?.name}}</span></h2>
+        <h2>{{"lastname"|translate}}: <span>{{viewData?.user?.lastName}}</span></h2>
+        <h2>{{"description"|translate}}: <span>{{viewData?.description}}</span></h2>
     </div>
     <div *ngIf="editBooking" class="approve-booking">
-        <p class="want">გსურთ აღწერის ცვლილება ?</p>
-        <p class="problem">შეგიძლიათ მიუთუთოთ თქვენი პორბლემა</p>
+        <p class="want">{{"do you want to change description"|translate}} ?</p>
+        <p class="problem">{{"you can enter your problem"|translate}}</p>
     
         <textarea [(ngModel)]="description" name="description" placeholder="აღწერა..."></textarea>
-        <button (click)="submit()">შეცვლა</button>
+        <button (click)="submit()">{{"edit"|translate}}</button>
       </div>
       <div class="approve-delete" *ngIf="deleteBooking">
-        <h2>ნამდვილად გსურთ ჯავშანის გაუქმება?</h2>
+        <h2>{{"do you really want to delete booking"|translate}}?</h2>
         <div>
-            <button class="yes" (click)="submitDelete()">დიახ</button><button class="no" (click)="toggleDelete()">არა</button>
+            <button class="yes" (click)="submitDelete()">{{"yes"|translate}}</button><button class="no" (click)="toggleDelete()">{{"no"|translate}}</button>
         </div>
       </div>
   </div>

@@ -30,8 +30,8 @@
           <td [ngClass]="getSlotClass(day, slot)" 
               [class.weekend]="isWeekend(day,slot)"
               (click)="!isWeekend(day,slot) && bookSlot(day, slot)">
-            <span *ngIf="isBookedByUser(day, slot)" class="booked-text">ჩემი ჯავშანი</span>
-            <span *ngIf="!isBooked(day, slot) && !isWeekend(day,slot)" class="booked-text"><span class="plus">+</span> დაჯავშნა</span>
+            <span *ngIf="isBookedByUser(day, slot)" class="booked-text">{{"my booking"|translate}}</span>
+            <span *ngIf="!isBooked(day, slot) && !isWeekend(day,slot)" class="booked-text"><span class="plus">+</span> {{"book"|translate}}</span>
           </td>
         </ng-container>
       </tr>
@@ -39,14 +39,14 @@
     </tbody>
   </table>
   <div *ngIf="pleaseLogIn" class="pleaseLogIn">
-    <p class="t1">დასაჯავშნად გთხოვთ გაიაროთ</p>
-    <p class="t2">ავტორიზაცია ან რეგისტრაცია</p>
+    <p class="t1">{{"please"|translate}}</p>
+    <p class="t2">{{"authorization"|translate}} {{"or"|translate}} {{"registration"|translate}}</p>
   </div>
   <div *ngIf="approveBooking" class="approve-booking">
-    <p class="want">გსურთ ვიზიტის დაჯავშნა ?</p>
-    <p class="problem">შეგიძლიათ მიუთუთოთ თქვენი პორბლემა</p>
+    <p class="want">{{"do you really want to book a visit"|translate}} ?</p>
+    <p class="problem">{{"you can enter your problem"|translate}}</p>
 
     <textarea [(ngModel)]="description" name="description" placeholder="აღწერა..."></textarea>
-    <button (click)="submit()">დაჯავშნა</button>
+    <button (click)="submit()">{{"book"|translate}}</button>
   </div>
 </div>

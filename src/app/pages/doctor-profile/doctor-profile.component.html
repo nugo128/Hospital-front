@@ -1,6 +1,6 @@
 <div class="main-cont">
     <div class="categories">
-        <h3>კატეგორიები</h3>
+        <h3>{{"categories"|translate}}</h3>
         <svg width="250" height="2" viewBox="0 0 250 2" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 1H250" stroke="#ECF2F8"/>
         </svg>
@@ -10,7 +10,7 @@
         <svg class="line" width="250" height="2" viewBox="0 0 250 2" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 1H250" stroke="#ECF2F8"/>
         </svg>
-        <p class="view-full">სრულად ნახვა <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <p class="view-full">{{"view all"|translate}} <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M13.0667 1.91667L7.46667 7.53334C7.4 7.60001 7.32778 7.64712 7.25 7.67467C7.17222 7.70267 7.08889 7.71667 7 7.71667C6.91111 7.71667 6.82778 7.70267 6.75 7.67467C6.67222 7.64712 6.6 7.60001 6.53333 7.53334L0.916668 1.91667C0.761112 1.76112 0.683334 1.56667 0.683334 1.33334C0.683334 1.10001 0.766668 0.900008 0.933334 0.733342C1.1 0.566675 1.29445 0.483342 1.51667 0.483342C1.73889 0.483342 1.93333 0.566675 2.1 0.733342L7 5.63334L11.9 0.733342C12.0556 0.577786 12.2471 0.500008 12.4747 0.500008C12.7027 0.500008 12.9 0.583342 13.0667 0.750008C13.2333 0.916675 13.3167 1.11112 13.3167 1.33334C13.3167 1.55556 13.2333 1.75001 13.0667 1.91667Z" fill="#18A4E1"/>
             </svg>
         </p>
@@ -22,23 +22,23 @@
             <h2>{{doctor?.name}} {{doctor?.lastName}}</h2>
         </div>
         <div>
-            <h3>ექიმი</h3>
+            <h3>{{"doctor"|translate}}</h3>
             <span>{{renderCategoryNames()}}</span>
             <h2 class="stars">
                 <svg *ngFor="let _ of [].constructor(doctor?.rating); let i = index" xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#FFD233" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
             </h2>
         </div>
         <div class="id">
-            <h3>პირადი ნომერი:</h3>
+            <h3>{{"ID number"|translate}}:</h3>
             <span>{{loggedInUser?.idNumber}}</span>
         </div>
         <div class="email">
             <h3>Email:</h3>
             <span>{{doctor?.email}}</span>
         </div>
-        <h3>პაროლის შეცვლა</h3>
+        <h3>{{"change password"|translate}}</h3>
         <div class="my-bookings">
-            <h3>დაჯავშნილია:</h3>
+            <h3>{{"booked"|translate}}:</h3>
             <span>( {{bookings?.length}} )</span>
         </div>
     </div>

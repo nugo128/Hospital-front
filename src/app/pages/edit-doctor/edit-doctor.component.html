@@ -9,7 +9,7 @@
                   </label>
               </div>
             <h3 class="name">{{user?.name}}</h3>
-            <h4>ექიმი</h4>
+            <h4>{{"doctor"|translate}}</h4>
             <p class="categories">{{renderCategoryNames()}}</p>
             <div class="start">
                 <svg *ngFor="let _ of [].constructor(user?.rating); let i = index" xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#FFD233" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
@@ -18,7 +18,7 @@
         <div class="cont2">
 
             <div class="idNum">
-                <div><svg (click)="toggleEditId()" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256" [ngStyle]="{'fill': editId ? '#000' : '#0533544D'}"><path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.68,147.31,64l24-24L216,84.68Z"></path></svg><span>პირადი ნომერი</span></div>
+                <div><svg (click)="toggleEditId()" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256" [ngStyle]="{'fill': editId ? '#000' : '#0533544D'}"><path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.68,147.31,64l24-24L216,84.68Z"></path></svg><span>{{'ID number'|translate}}</span></div>
                 <input type="text" [(ngModel)]="idNumberValue" [value]="user?.idNumber" [class.edit]="editId" [disabled]="!editId">
             </div>
 
@@ -27,26 +27,26 @@
                 <input type="text" [value]="user?.email" [(ngModel)]="emailValue"  disabled>
             </div>
             <div class="password">
-                <div><svg (click)="toggleEditPassword()" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256" [ngStyle]="{'fill': editPassword ? '#000' : '#0533544D'}"><path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.68,147.31,64l24-24L216,84.68Z"></path></svg><span>პაროლის შეცვლა</span></div>
+                <div><svg (click)="toggleEditPassword()" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256" [ngStyle]="{'fill': editPassword ? '#000' : '#0533544D'}"><path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.68,147.31,64l24-24L216,84.68Z"></path></svg><span>{{"change password"|translate}}</span></div>
                 <div class="passwords">
-                    <label *ngIf="editPassword" for="">password</label>
+                    <label *ngIf="editPassword" for="">{{"password"|translate}}</label>
                     <input type="text" [(ngModel)]="passwordValue" [class.edit]="editPassword" [disabled]="!editPassword">
-                    <label *ngIf="editPassword" for="">repeat password</label>
+                    <label *ngIf="editPassword" for="">{{"repeat password"|translate}}</label>
                     <input *ngIf="editPassword" [(ngModel)]="repeatPasswordValue" type="text" class="edit">
                 </div>
             </div>
             <div class="booked">
-                <div><svg (click)="toggleEditBookings()" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256" [ngStyle]="{'fill': editBookings ? '#000' : '#0533544D'}"><path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.68,147.31,64l24-24L216,84.68Z"></path></svg><span>დაჯავშნილია</span></div>
+                <div><svg (click)="toggleEditBookings()" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256" [ngStyle]="{'fill': editBookings ? '#000' : '#0533544D'}"><path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.68,147.31,64l24-24L216,84.68Z"></path></svg><span>{{"booked"|translate}}</span></div>
                 <span class="quantity">(20)</span>
             </div>
         </div>
     </div>
     <p class="error">{{errorMessage}}</p>
     <div class="buttons">
-        <button class="add" (click)="update()">+ დამატება</button>
+        <button class="add" (click)="update()">+ {{"add"|translate}}</button>
     <button class="edit-btn" (click)="childComponent.toggleEdit()" (click)="editting()" [class.editOn]="edittingOn"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.68,147.31,64l24-24L216,84.68Z"></path></svg>
-      <span>რედაქტირება</span></button>
-      <button class="delete" (click)="childComponent.toggleDelete()" (click)="deleting()" [class.deleteOn]="deletingOn"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff" viewBox="0 0 256 256"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-42.34-82.34L139.31,152l18.35,18.34a8,8,0,0,1-11.32,11.32L128,163.31l-18.34,18.35a8,8,0,0,1-11.32-11.32L116.69,152,98.34,133.66a8,8,0,0,1,11.32-11.32L128,140.69l18.34-18.35a8,8,0,0,1,11.32,11.32Z"></path></svg> <span>წაშლა</span></button>
+      <span>{{"edit"|translate}}</span></button>
+      <button class="delete" (click)="childComponent.toggleDelete()" (click)="deleting()" [class.deleteOn]="deletingOn"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff" viewBox="0 0 256 256"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-42.34-82.34L139.31,152l18.35,18.34a8,8,0,0,1-11.32,11.32L128,163.31l-18.34,18.35a8,8,0,0,1-11.32-11.32L116.69,152,98.34,133.66a8,8,0,0,1,11.32-11.32L128,140.69l18.34-18.35a8,8,0,0,1,11.32,11.32Z"></path></svg> <span>{{"delete"|translate}}</span></button>
     </div>
 </div>
 <app-admin-calendar (turnOffDelete)="recieveDeleteOff()" (turnOffeditting)="recieveEdittingOff()"></app-admin-calendar>

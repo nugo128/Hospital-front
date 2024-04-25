@@ -8,6 +8,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-login-dialog',
   templateUrl: './login-dialog.component.html',
@@ -22,12 +23,12 @@ export class LoginDialogComponent {
   touched: boolean = false;
   validationMessages = {
     email: {
-      required: 'მეილი სავალდებულოა',
-      email: 'მეილის ფორმატი არასწორია',
+      required: this.translate.instant('email is required'),
+      email: this.translate.instant('incorrect email format'),
     },
     password: {
-      required: 'პაროლი სავალდებულოა',
-      minlength: 'პაროლი უნდა შედგებოდეს მინიმუმ 8 სიმბოლოსგან',
+      required: this.translate.instant('password required'),
+      minlength: this.translate.instant('password length'),
     },
   };
   constructor(
@@ -35,7 +36,8 @@ export class LoginDialogComponent {
     private authService: AuthService,
     private router: Router,
     public dialogRef: MatDialogRef<LoginDialogComponent>,
-    private _snackbar: MatSnackBar
+    private _snackbar: MatSnackBar,
+    private translate: TranslateService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -66,8 +68,8 @@ export class LoginDialogComponent {
           } else {
             this.twoStepActive = true;
             this._snackbar.open(
-              'კოდი გამოგზავნილია მითითებულ მეილზე!',
-              'დახურვა',
+              this.translate.instant('code sent'),
+              this.translate.instant('close'),
               {
                 horizontalPosition: this.horizontalPosition,
                 verticalPosition: this.verticalPosition,
@@ -77,6 +79,7 @@ export class LoginDialogComponent {
           }
         },
         error: (err) => {
+          console.log(err);
           this.errorMessage = err.error;
         },
       });

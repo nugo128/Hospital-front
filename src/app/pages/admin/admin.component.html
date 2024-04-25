@@ -7,22 +7,22 @@
                 <rect y="14" width="16" height="3" rx="1.5" fill="#18A4E1"/>
             </svg>
                
-            <a routerLink="registration" routerLinkActive="active"><span>რეგისტრაცია</span></a>
-            <a routerLink="categories" routerLinkActive="active"><span>კატეგორიები </span></a>
-            <a routerLink="doctors" routerLinkActive="active"><span>ექიმები</span></a>
+            <a routerLink="registration" routerLinkActive="active"><span>{{'registration'|translate}}</span></a>
+            <a routerLink="categories" routerLinkActive="active"><span>{{'categories'|translate}} </span></a>
+            <a routerLink="doctors" routerLinkActive="active"><span>{{"doctors"|translate}}</span></a>
         </div>
         <div class="roles">
             <div [class.activated]="url==='/admin/doctors' && doctor">
-                <h2>ექიმი</h2>
+                <h2>{{'doctor'|translate}}</h2>
 
             </div>
             <div>
-                <h2>მომხმარებელი</h2>
+                <h2>{{"user"|translate}}</h2>
 
             </div>
             <div>
                 
-                <h2>ადმინისტრატორი</h2>
+                <h2>{{"admin"|translate}}</h2>
             </div>
         </div>
     </div>

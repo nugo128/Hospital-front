@@ -7,6 +7,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registration',
@@ -25,24 +26,24 @@ export class RegistrationComponent implements OnInit {
 
   validationMessages = {
     email: {
-      required: 'ელ. ფოსტა აუცილებელია.',
-      email: 'გთხოვთ, შეიყვანოთ სწორი ელ. ფოსტა.',
+      required: this.translate.instant('email is required'),
+      email: this.translate.instant('incorrect email format'),
     },
     name: {
-      required: 'სახელი აუცილებელია.',
-      minlength: 'სახელი უნდა იყოს მინიმუმ 5 სიმბოლო.',
+      required: this.translate.instant('name required'),
+      minlength: this.translate.instant('name min 5 symbols'),
     },
     lastName: {
-      required: 'გვარი აუცილებელია.',
+      required: this.translate.instant('lastname required'),
     },
     idNumber: {
-      required: 'პირადი ნომერი აუცილებელია.',
-      minlength: 'პირადი ნომერი უნდა იყოს 11 სიმბოლო.',
-      maxlength: 'პირადი ნომერი უნდა იყოს 11 სიმბოლო.',
+      required: this.translate.instant('ID required'),
+      minlength: this.translate.instant('ID length'),
+      maxlength: this.translate.instant('ID length'),
     },
     password: {
-      required: 'პაროლი აუცილებელია.',
-      minlength: 'პაროლი უნდა იყოს მინიმუმ 8 სიმბოლო.',
+      required: this.translate.instant('password required'),
+      minlength: this.translate.instant('password length'),
     },
   };
   registerDoctor: boolean = false;
@@ -51,7 +52,8 @@ export class RegistrationComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private _snackbar: MatSnackBar
+    private _snackbar: MatSnackBar,
+    private translate: TranslateService
   ) {
     router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
