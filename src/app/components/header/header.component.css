@@ -109,3 +109,8 @@ nav a {
 .user img {
   width: 40px;
 }
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+}

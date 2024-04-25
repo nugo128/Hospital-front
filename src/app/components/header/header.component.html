@@ -2,19 +2,19 @@
 <div class="navigations">
     <div class="logo" routerLink="">
         <img src="../../../assets/images/logo.png" alt="12">
-        <h2>კლინიკა</h2>
+        <h2>{{'clinic'|translate}}</h2>
     </div>
     <nav>
-        <a routerLink="" class="active">ექიმები</a>
-        <a routerLink="#">კლინიკები</a>
-        <a routerLink="#">ანოტაციები</a>
-        <a routerLink="#">აქციები</a>
-        <a routerLink="#">სერვისები</a>
-        <a routerLink="#">მედიკამენტები</a>
-        <a routerLink="#">კონტაქტი</a>
+        <a routerLink="" class="active">{{'doctors'|translate}}</a>
+        <a routerLink="#">{{'clinics'|translate}}</a>
+        <a routerLink="#">{{'anotations'|translate}}</a>
+        <a routerLink="#">{{'promotions'|translate}}</a>
+        <a routerLink="#">{{'services'|translate}}</a>
+        <a routerLink="#">{{'medicines'|translate}}</a>
+        <a routerLink="#">{{'contact'|translate}}</a>
     </nav>
     <div class="auth" *ngIf="!loggedInUser else user">
-        <p><span class="login" (click)="openDialog()">ავტორიზაცია</span> / <a routerLink="register" class="register">რეგისტრაცია</a></p>
+        <p><span class="login" (click)="openDialog()">{{'authorization'|translate}}</span> / <a routerLink="register" class="register">{{'registration'|translate}}</a></p>
     </div>
     <ng-template #user>
         <div class="user" [routerLink]="loggedInUser['role'] === 'user' ? 'user-profile/' + loggedInUser?.id : loggedInUser['role'] === 'doctor' ? 'doctor-profile/' + loggedInUser?.id : 'admin/doctors'">
@@ -23,10 +23,10 @@
         </div>
     </ng-template>
     
-
-    <div class="language">
-        <p>ENG</p>
-    </div>
+    <select name="" id="" class="language" (change)="switchLanguage($event.target.value)" [value]="lang">
+        <option value="ge">ქართ</option>
+        <option value="en">ENG</option>
+    </select>
 </div>
 </header>
 <div class="contact">
@@ -43,14 +43,14 @@
                 <div class="location">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#18A4E1" viewBox="0 0 256 256"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"></path></svg>
                 </div>
-                <p>იაკობ ნიკოლაძე №10</p>
+                <p>{{'iakob nikoladze'|translate}} №10</p>
                   
             </div>
         </div>
     </div>
     <div class="inputs">
-        <app-input placeholder="მოძებნე ექიმი სახელით"></app-input>
-        <app-input placeholder="მოძებნე სპეციალობით"></app-input>
+        <app-input [placeholder]="'search doctor by name'|translate"></app-input>
+        <app-input [placeholder]="'search by category'|translate"></app-input>
         <div class="search">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
         </div>

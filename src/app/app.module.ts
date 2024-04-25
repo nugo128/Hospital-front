@@ -21,7 +21,7 @@ import {
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BookAppointmentComponent } from './pages/book-appointment/book-appointment.component';
 import { CustomCalendarComponent } from './components/custom-calendar/custom-calendar.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
@@ -34,6 +34,12 @@ import { EditDoctorComponent } from './pages/edit-doctor/edit-doctor.component';
 import { EditEmailDialogComponent } from './components/edit-email-dialog/edit-email-dialog.component';
 import { AdminCalendarComponent } from './components/admin-calendar/admin-calendar.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -72,6 +78,13 @@ import { CategoriesComponent } from './pages/categories/categories.component';
     MatDialogTitle,
     MatDialogModule,
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

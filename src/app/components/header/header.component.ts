@@ -7,6 +7,7 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { AuthService } from '../../services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -17,11 +18,17 @@ export class HeaderComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   loggedInUser: any;
+  lang: string = localStorage.getItem('lang')
+    ? localStorage.getItem('lang')
+    : 'ge';
   constructor(
     public dialog: MatDialog,
     private _snackbar: MatSnackBar,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private translate: TranslateService
+  ) {
+    translate.setDefaultLang(this.lang);
+  }
 
   ngOnInit(): void {
     this.authService.currentUser.subscribe((user) => {
@@ -50,5 +57,10 @@ export class HeaderComponent implements OnInit {
         });
       }
     });
+  }
+  switchLanguage(language: string) {
+    this.translate.use(language);
+    this.lang = language;
+    localStorage.setItem('lang', language);
   }
 }
