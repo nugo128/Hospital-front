@@ -9,7 +9,7 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { AdminDoctorsComponent } from './pages/admin-doctors/admin-doctors.component';
 import { EditDoctorComponent } from './pages/edit-doctor/edit-doctor.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
-
+import { ErrorPageComponent } from './pages/error-page/error-page.component';
 const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'book-appointment/:id', component: BookAppointmentComponent },
@@ -39,6 +39,7 @@ const routes: Routes = [
       { path: 'categories', component: CategoriesComponent },
     ],
   },
+  { path: '**', component: ErrorPageComponent },
 ];
 
 @NgModule({

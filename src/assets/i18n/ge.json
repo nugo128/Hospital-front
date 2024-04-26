@@ -85,7 +85,8 @@
     "email changed successfully":"გილოცავთ! მეილი წარმატებით შეიცვალა!",
     "enter category name":"შეიყვანეთ კატეგორიის სახელი",
     "change":"შეცვლა",
-    "do you really want to delete category":"ნამდვილად გსურთ კატეგორიის წაშლა"
+    "do you really want to delete category":"ნამდვილად გსურთ კატეგორიის წაშლა",
+    "booked":"დაჯავშნილია"
 
 
 }

@@ -36,6 +36,7 @@ import { AdminCalendarComponent } from './components/admin-calendar/admin-calend
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { ErrorPageComponent } from './pages/error-page/error-page.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -64,6 +65,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     EditEmailDialogComponent,
     AdminCalendarComponent,
     CategoriesComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
