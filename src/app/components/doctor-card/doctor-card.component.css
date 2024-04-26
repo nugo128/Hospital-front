@@ -58,3 +58,14 @@ h2 {
   font-weight: 400;
   margin: 10px 0;
 }
+.top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.pin {
+  cursor: pointer;
+}
+.pinned {
+  stroke: #18a4e1;
+}

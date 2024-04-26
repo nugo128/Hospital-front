@@ -30,11 +30,11 @@
 
     </div>
     <div class="doctors">
-        <ng-container *ngFor="let doctor of users">
-            <app-doctor-card *ngIf="doctor.role === 'doctor'"  [name]="doctor.name + ' ' + doctor.lastName" [position]="doctor.categories" [image]="doctor.image" [starCount]="doctor.rating" [id]="doctor.id" ></app-doctor-card>
+        <ng-container *ngFor="let doctor of displayedUsers">
+            <app-doctor-card *ngIf="doctor.role === 'doctor'" (updatePinned)="changePinned($event)" [pinned]="doctor?.pinned" [name]="doctor.name + ' ' + doctor.lastName" [position]="doctor.categories" [image]="doctor.image" [starCount]="doctor.rating" [id]="doctor.id" ></app-doctor-card>
         </ng-container>
         <div class="see-all">
-            <p>{{'view all'|translate}}</p>
+            <p (click)="onViewAll()">{{'view all'|translate}}</p>
             <div class="see"></div>
         </div>
     </div>

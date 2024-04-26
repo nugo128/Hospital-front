@@ -38,4 +38,7 @@ export class UserService {
       ''
     );
   }
+  togglePinned(id) {
+    return this.http.post(`${BASE_API_URL}/users/TogglePinned/${id}`, '');
+  }
 }

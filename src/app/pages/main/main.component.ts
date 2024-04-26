@@ -10,6 +10,10 @@ import { UserService } from '../../services/user.service';
 export class MainComponent implements OnInit {
   categories: any;
   users: any;
+  data: any;
+  displayedUsers: any[] = [];
+  limit = 6;
+  showAll = false;
   constructor(
     private userService: UserService,
     private categoryService: CategoryService
@@ -17,10 +21,30 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.userService.users().subscribe((resp) => {
       console.log(resp);
-      this.users = resp;
+      this.data = resp;
+      this.users = this.data.sort((a, b) => {
+        return b.pinned - a.pinned || a.name.localeCompare(b.name);
+      });
+      this.displayedUsers = this.users.slice(0, this.limit);
     });
     this.categoryService.categories().subscribe((resp) => {
       this.categories = resp;
     });
+  }
+  onViewAll(): void {
+    this.showAll = !this.showAll;
+    this.displayedUsers = this.showAll
+      ? this.users
+      : this.users.slice(0, this.limit);
+  }
+  changePinned(data: number) {
+    const index = this.users.findIndex((user) => user.id === data);
+    this.users[index]['pinned'] = !this.users[index]['pinned'];
+    this.users = this.users.sort((a, b) => {
+      return b.pinned - a.pinned || a.name.localeCompare(b.name);
+    });
+    !this.showAll
+      ? (this.displayedUsers = this.users.slice(0, this.limit))
+      : this.users;
   }
 }

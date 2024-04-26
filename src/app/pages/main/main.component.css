@@ -96,7 +96,7 @@
 }
 .see-all p {
   color: #053354;
-
+  cursor: pointer;
   font-size: 14px;
   font-weight: 400;
 }

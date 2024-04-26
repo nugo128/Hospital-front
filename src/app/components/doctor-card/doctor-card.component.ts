@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-doctor-card',
@@ -12,7 +13,9 @@ export class DoctorCardComponent {
   @Input() starCount = 0;
   @Input() image = '';
   @Input() id = 0;
-  constructor(private router: Router) {}
+  @Input() pinned: boolean = false;
+  @Output() updatePinned: EventEmitter<number> = new EventEmitter();
+  constructor(private router: Router, private userService: UserService) {}
 
   renderCategoryNames(): string {
     if (this.position.length === 1) {
@@ -30,5 +33,16 @@ export class DoctorCardComponent {
   }
   book(id) {
     this.router.navigate([`book-appointment/${id}`]);
+  }
+  togglePinned() {
+    this.userService.togglePinned(this.id).subscribe({
+      next: (resp) => {
+        this.pinned = !this.pinned;
+        this.updatePinned.emit(this.id);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }
