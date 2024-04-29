@@ -41,4 +41,7 @@ export class UserService {
   togglePinned(id) {
     return this.http.post(`${BASE_API_URL}/users/TogglePinned/${id}`, '');
   }
+  downloadFile(id) {
+    return this.http.get(`${BASE_API_URL}/users/download/${id}`);
+  }
 }

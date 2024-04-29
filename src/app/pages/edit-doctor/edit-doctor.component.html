@@ -8,9 +8,14 @@
                     <img [src]="'data:image/jpeg;base64,' + user?.image" alt="">
                   </label>
               </div>
-            <h3 class="name">{{user?.name}}</h3>
-            <h4>{{"doctor"|translate}}</h4>
-            <p class="categories">{{renderCategoryNames()}}</p>
+              
+              <h3 class="name">{{user?.name}} {{user?.lastName}}</h3>
+              <h4>{{"doctor"|translate}}</h4>
+              <p class="categories">{{renderCategoryNames()}}</p>
+              <button class="download" (click)="downloadCV()">{{"download cv"|translate}} <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+              </svg>
+              </button>
             <div class="start">
                 <svg *ngFor="let _ of [].constructor(user?.rating); let i = index" xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#FFD233" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
             </div>

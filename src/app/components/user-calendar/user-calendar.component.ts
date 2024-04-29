@@ -6,6 +6,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { UserService } from '../../services/user.service';
 interface TimeSlot {
   time: string;
 }
@@ -35,12 +36,15 @@ export class UserCalendarComponent {
     this.currentDate.getMonth(),
     1
   );
+  doctor: any;
   valuesToEdit = {};
+  viewBooking: boolean = false;
 
   description: string = '';
 
   constructor(
     private bookingService: BookingService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private _snackbar: MatSnackBar
   ) {
@@ -51,6 +55,7 @@ export class UserCalendarComponent {
     this.route.params.subscribe((param) => {
       this.bookingService.user(param['id']).subscribe((resp) => {
         this.bookedSlots = resp;
+        console.log(resp);
       });
     });
   }
@@ -96,6 +101,11 @@ export class UserCalendarComponent {
       this.timeSlots.push({ time: `${hour}:00 - ${hour + 1}:00` });
     }
   }
+  closeView() {
+    this.viewBooking = false;
+    this.doctor = {};
+    this.description = '';
+  }
 
   bookSlot(date: Date, slot: TimeSlot) {
     const dateString = date.toISOString().split('T')[0];
@@ -104,11 +114,21 @@ export class UserCalendarComponent {
     );
     if (this.edit && index !== -1) {
       this.editBooking = true;
+      this.description = this.bookedSlots[index]['description'];
       this.valuesToEdit = this.bookedSlots[index];
     }
     if (this.delete && index !== -1) {
       this.deleteBooking = true;
       this.deleteId = this.bookedSlots[index]['id'];
+    }
+    if (this.isBooked(date, slot) && !this.editBooking && !this.deleteBooking) {
+      this.userService
+        .user(this.bookedSlots[index].doctorId)
+        .subscribe((resp) => {
+          this.doctor = resp;
+        });
+      this.description = this.bookedSlots[index]['description'];
+      this.viewBooking = !this.viewBooking;
     }
   }
   submitDelete() {
@@ -177,11 +197,18 @@ export class UserCalendarComponent {
     this.valuesToEdit = {};
     this.delete = false;
     this.deleteBooking = false;
+    this.viewBooking = false;
   }
   toggleDelete() {
     this.delete = !this.delete;
     this.deleteBooking = false;
     this.editBooking = false;
     this.edit = false;
+    this.viewBooking = false;
+  }
+  activeTime(bookingSlots, time) {
+    return bookingSlots.some(
+      (obj) => obj.hasOwnProperty('time') && obj.time === time
+    );
   }
 }

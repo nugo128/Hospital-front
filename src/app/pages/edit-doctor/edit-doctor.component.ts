@@ -29,6 +29,8 @@ export class EditDoctorComponent implements OnInit {
   edittingOn: boolean = false;
   deletingOn: boolean = false;
   numOfBookings: number = 0;
+  id: number = 0;
+  url;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -37,10 +39,28 @@ export class EditDoctorComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
+      this.id = param['id'];
       this.userService.user(param['id']).subscribe((resp) => {
         this.user = resp;
         console.log(resp);
       });
+    });
+  }
+  downloadCV() {
+    this.userService.downloadFile(this.id).subscribe((resp) => {
+      const decodedFileContents = atob(resp['fileContents']);
+      const byteArray = new Uint8Array(decodedFileContents.length);
+      for (let i = 0; i < decodedFileContents.length; i++) {
+        byteArray[i] = decodedFileContents.charCodeAt(i);
+      }
+      const blob = new Blob([byteArray], { type: resp['contentType'] });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = resp['fileDownloadName'];
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
     });
   }
   formdata = new FormData();

@@ -144,3 +144,17 @@ input {
   background-color: #4fff7e;
   color: #006d9c;
 }
+.download {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background-color: #18a4e1;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.download svg {
+  width: 23px;
+  margin-left: 15px;
+}

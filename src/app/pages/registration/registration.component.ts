@@ -116,6 +116,7 @@ export class RegistrationComponent implements OnInit {
     if (file) {
       if (event.target.id === 'fileInputCV') {
         this.formdata.append('CV', file, file.name);
+        this.formdata.append('fileName', file.name);
         this.fileError = false;
       } else {
         this.formdata.append('image', file, file.name);

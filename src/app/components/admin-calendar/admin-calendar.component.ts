@@ -120,6 +120,7 @@ export class AdminCalendarComponent {
     if (this.edit && index !== -1) {
       this.editBooking = true;
       this.valuesToEdit = this.bookedSlots[index];
+      this.description = this.valuesToEdit['description'];
     }
     if (this.delete && index !== -1) {
       this.deleteBooking = true;
@@ -194,6 +195,7 @@ export class AdminCalendarComponent {
     this.delete = false;
     this.deleteBooking = false;
     this.viewBooking = false;
+    this.edit ? '' : (this.description = '');
   }
   toggleDelete() {
     this.delete = !this.delete;

@@ -203,3 +203,38 @@ td:hover {
 .day {
   color: #18a4e1;
 }
+.view-booking {
+  width: 420px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  box-shadow: 0px 4px 30px 0px #05335433;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.view-booking img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+.close {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #ff244c;
+  color: white;
+  margin-left: 95%;
+  cursor: pointer;
+}
+.times {
+  color: #0533544d;
+}
+.hasBooking {
+  color: #053354;
+}

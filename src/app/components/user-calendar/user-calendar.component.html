@@ -25,7 +25,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let slot of timeSlots">
-          <td>{{ slot.time }}</td>
+          <td class="times" [class.hasBooking]="activeTime(bookedSlots, slot.time)">{{ slot.time }}</td>
           <ng-container *ngFor="let day of days">
             <td [ngClass]="getSlotClass(day, slot)" 
                 [class.weekend]="isWeekend(day,slot)"
@@ -48,6 +48,14 @@
         </div>
         <button class="delete" [class.deleteOn]="delete" (click)="toggleDelete()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff" viewBox="0 0 256 256"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-42.34-82.34L139.31,152l18.35,18.34a8,8,0,0,1-11.32,11.32L128,163.31l-18.34,18.35a8,8,0,0,1-11.32-11.32L116.69,152,98.34,133.66a8,8,0,0,1,11.32-11.32L128,140.69l18.34-18.35a8,8,0,0,1,11.32,11.32Z"></path></svg> <span>{{"delete"|translate}}</span></button>
     </div>
+    <div class="view-booking" *ngIf="viewBooking">
+
+      <span class="close" (click)="closeView()">X</span>
+      <img [src]="'data:image/jpeg;base64,' + doctor?.image" alt="">
+      <h2>{{'name'|translate}}: <span>{{doctor?.name}}</span></h2>
+      <h2>{{'lastname'|translate}}: <span>{{doctor?.lastName}}</span></h2>
+      <h2>{{'description'|translate}}: <span>{{description}}</span></h2>
+  </div>
     <div *ngIf="editBooking" class="approve-booking">
         <p class="want">{{"do you want to change description"|translate}} ?</p>
         <p class="problem">{{"you can enter your problem"|translate}}</p>
