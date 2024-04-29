@@ -86,6 +86,14 @@
      "enter category name":"Enter category nameი",
      "change":"Change",
      "do you really want to delete category":"Do you really want to delete category",
-     "booked":"Booked"
+     "booked":"Booked",
+     "Mon":"Mon",
+     "Tue":"Tue",
+     "Wed":"Wed",
+     "Thu":"Thu",
+     "Fri":"Fri",
+     "Sat":"Sat",
+     "Sun":"Sun"
+     
 
 }

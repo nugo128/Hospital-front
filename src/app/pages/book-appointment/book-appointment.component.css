@@ -86,6 +86,7 @@
 }
 .calendar {
   display: flex;
+  margin-top: 60px;
   gap: 50px;
 }
 .buttons {

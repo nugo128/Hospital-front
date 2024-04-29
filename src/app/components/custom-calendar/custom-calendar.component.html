@@ -20,7 +20,7 @@
             <path d="M1.4376 0.449986L5.6501 4.64999C5.7001 4.69999 5.73543 4.75415 5.7561 4.81249C5.7771 4.87082 5.7876 4.93332 5.7876 4.99999C5.7876 5.06665 5.7771 5.12915 5.7561 5.18749C5.73543 5.24582 5.7001 5.29999 5.6501 5.34999L1.4376 9.56249C1.32093 9.67915 1.1751 9.73749 1.0001 9.73749C0.825098 9.73749 0.675098 9.67499 0.550098 9.54999C0.425098 9.42499 0.362598 9.27915 0.362598 9.11249C0.362598 8.94582 0.425098 8.79999 0.550098 8.67499L4.2251 4.99999L0.550098 1.32499C0.433431 1.20832 0.375098 1.06465 0.375098 0.893987C0.375098 0.722986 0.437598 0.574986 0.562598 0.449986C0.687598 0.324986 0.833431 0.262486 1.0001 0.262486C1.16676 0.262486 1.3126 0.324986 1.4376 0.449986Z" fill="#053354"/>
             </svg>
             </button></th>
-        <th *ngFor="let day of days">{{ day | date: 'EEE d' }}</th>
+        <th *ngFor="let day of days"><span class="day">{{day |translate|date:'d'}}</span> ( {{ day | date: 'EEE'|translate }} )</th>
       </tr>
     </thead>
     <tbody>
@@ -29,9 +29,9 @@
         <ng-container *ngFor="let day of days">
           <td [ngClass]="getSlotClass(day, slot)" 
               [class.weekend]="isWeekend(day,slot)"
-              (click)="!isWeekend(day,slot) && bookSlot(day, slot)">
+              (click)="!isWeekend(day,slot) && !approveBooking && bookSlot(day, slot)">
             <span *ngIf="isBookedByUser(day, slot)" class="booked-text">{{"my booking"|translate}}</span>
-            <span *ngIf="!isBooked(day, slot) && !isWeekend(day,slot)" class="booked-text"><span class="plus">+</span> {{"book"|translate}}</span>
+            <span *ngIf="!isBooked(day, slot) && !approveBooking && !isWeekend(day,slot)" class="booked-text"><span class="plus">+</span> {{"book"|translate}}</span>
           </td>
         </ng-container>
       </tr>
@@ -42,11 +42,13 @@
     <p class="t1">{{"please"|translate}}</p>
     <p class="t2">{{"authorization"|translate}} {{"or"|translate}} {{"registration"|translate}}</p>
   </div>
-  <div *ngIf="approveBooking" class="approve-booking">
-    <p class="want">{{"do you really want to book a visit"|translate}} ?</p>
-    <p class="problem">{{"you can enter your problem"|translate}}</p>
 
-    <textarea [(ngModel)]="description" name="description" placeholder="აღწერა..."></textarea>
-    <button (click)="submit()">{{"book"|translate}}</button>
-  </div>
+    <div *ngIf="approveBooking" class="approve-booking">
+      <span class="close" (click)="closeApprove()">X</span>
+      <p class="want">{{"do you really want to book a visit"|translate}} ?</p>
+      <p class="problem">{{"you can enter your problem"|translate}}</p>
+      
+      <textarea [(ngModel)]="description" name="description" placeholder="აღწერა..."></textarea>
+      <button (click)="submit()">{{"book"|translate}}</button>
+    </div>
 </div>

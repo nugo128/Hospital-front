@@ -28,6 +28,7 @@ export class EditDoctorComponent implements OnInit {
   errorMessage: string;
   edittingOn: boolean = false;
   deletingOn: boolean = false;
+  numOfBookings: number = 0;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -78,6 +79,9 @@ export class EditDoctorComponent implements OnInit {
       console.log(res);
     });
   }
+  numberOfBooking(e: number) {
+    this.numOfBookings = e;
+  }
   update() {
     if (this.idNumberValue) {
       this.formdata.append('IdNumber', this.idNumberValue);
@@ -116,11 +120,13 @@ export class EditDoctorComponent implements OnInit {
     this.editPassword = !this.editPassword;
   }
   toggleEditBookings() {
-    this.editBookings = !this.editBookings;
+    this.childComponent.toggleEdit();
+    this.editting();
   }
   editting() {
     this.edittingOn = !this.edittingOn;
     this.deletingOn = false;
+    this.editBookings = !this.editBookings;
   }
   deleting() {
     this.deletingOn = !this.deletingOn;

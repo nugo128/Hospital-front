@@ -191,4 +191,9 @@ export class CustomCalendarComponent implements OnInit {
     this.currentDate.setDate(this.currentDate.getDate() - 7);
     this.calculateWeek();
   }
+
+  closeApprove() {
+    this.approveBooking = false;
+    this.bookedSlots.pop();
+  }
 }

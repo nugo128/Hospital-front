@@ -151,3 +151,17 @@ td:hover {
   align-self: flex-end;
   color: #fff;
 }
+.close {
+  position: absolute;
+  right: 2%;
+  background-color: red;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 20px;
+  text-align: center;
+  top: 5px;
+}
+.day {
+  color: #18a4e1;
+}

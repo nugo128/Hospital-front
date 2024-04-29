@@ -19,6 +19,7 @@ interface TimeSlot {
 export class AdminCalendarComponent {
   @Output() turnOffDelete = new EventEmitter<string>();
   @Output() turnOffeditting = new EventEmitter<string>();
+  @Output() numberOfBookings = new EventEmitter<number>();
   editBooking = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -57,6 +58,7 @@ export class AdminCalendarComponent {
     this.route.params.subscribe((param) => {
       this.bookingService.doctor(param['id']).subscribe((resp) => {
         this.bookedSlots = resp;
+        this.numberOfBookings.emit(this.bookedSlots.length);
       });
     });
   }

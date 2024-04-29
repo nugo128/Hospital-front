@@ -86,7 +86,14 @@
     "enter category name":"შეიყვანეთ კატეგორიის სახელი",
     "change":"შეცვლა",
     "do you really want to delete category":"ნამდვილად გსურთ კატეგორიის წაშლა",
-    "booked":"დაჯავშნილია"
+    "booked":"დაჯავშნილია",
+    "Mon":"ორშ",
+    "Tue":"სამ",
+    "Wed":"ოთხ",
+    "Thu":"ხუთ",
+    "Fri":"პარ",
+    "Sat":"შაბ",
+    "Sun":"კვი"
 
 
 }

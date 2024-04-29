@@ -38,6 +38,7 @@ td:hover {
 }
 
 .controls {
+  margin-top: 60px;
   margin-bottom: 20px;
   display: flex;
   align-self: flex-start;
@@ -198,4 +199,7 @@ td:hover {
   align-items: center;
   justify-content: center;
   gap: 20px;
+}
+.day {
+  color: #18a4e1;
 }
