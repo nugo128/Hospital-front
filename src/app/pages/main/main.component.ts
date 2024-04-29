@@ -14,6 +14,7 @@ export class MainComponent implements OnInit {
   displayedUsers: any[] = [];
   limit = 6;
   showAll = false;
+  selectedCategory: string;
   constructor(
     private userService: UserService,
     private categoryService: CategoryService
@@ -28,8 +29,21 @@ export class MainComponent implements OnInit {
       this.displayedUsers = this.users.slice(0, this.limit);
     });
     this.categoryService.categories().subscribe((resp) => {
+      console.log(resp);
       this.categories = resp;
     });
+  }
+  filterUsersByCategory(category: any): void {
+    console.log(category);
+    if (!category || this.selectedCategory === category) {
+      this.displayedUsers = this.users.slice(0, 6);
+      this.selectedCategory = '';
+      return;
+    }
+    this.selectedCategory = category;
+    this.displayedUsers = this.users.filter((user) =>
+      user.categories.some((cat) => cat.name === category)
+    );
   }
   onViewAll(): void {
     this.showAll = !this.showAll;

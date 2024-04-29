@@ -32,7 +32,7 @@ export class AdminComponent {
             .map((segment) => segment.path)
             .join('/');
         this.url = baseRoute;
-        if (segments[2]) {
+        if (segments && segments.length > 2 && segments[2]) {
           this.doctor = !isNaN(Number(segments[2]?.path));
         }
       });

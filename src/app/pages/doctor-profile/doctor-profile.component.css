@@ -98,3 +98,7 @@ h3 {
   display: flex;
   gap: 5px;
 }
+.selected span,
+.selected h4 {
+  color: #18a4e1;
+}

@@ -63,6 +63,7 @@
   display: flex;
   gap: 5px;
   width: 100%;
+  cursor: pointer;
 }
 .category span {
   color: rgb(165, 165, 165);
@@ -106,4 +107,8 @@
   background-color: #18a4e1;
   justify-self: flex-end;
   align-self: flex-end;
+}
+.selected span,
+.selected h4 {
+  color: #18a4e1;
 }

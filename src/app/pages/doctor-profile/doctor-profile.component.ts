@@ -11,6 +11,7 @@ import { UserService } from '../../services/user.service';
   styleUrl: './doctor-profile.component.css',
 })
 export class DoctorProfileComponent implements OnInit {
+  currentCategory: string = '';
   constructor(
     private categoryService: CategoryService,
     private bookingService: BookingService,
@@ -46,6 +47,7 @@ export class DoctorProfileComponent implements OnInit {
   }
   renderCategoryNames(): string {
     if (this.doctor?.categories.length === 1) {
+      this.currentCategory = this.doctor?.categories?.name;
       return this.doctor?.categories?.name;
     } else {
       let categoryNames = '';
@@ -55,6 +57,8 @@ export class DoctorProfileComponent implements OnInit {
           categoryNames += '/';
         }
       }
+      this.currentCategory = categoryNames;
+      console.log(categoryNames);
       return categoryNames;
     }
   }

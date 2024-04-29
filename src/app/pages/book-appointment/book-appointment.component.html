@@ -5,7 +5,7 @@
             <path d="M0 1H250" stroke="#ECF2F8"/>
         </svg>
 
-        <div class="category" *ngFor="let category of categories"><span>( {{category.id * 16}} )</span><h4>{{category.name}}</h4></div> 
+        <div class="category" [class.selected]="category.name === highlitedCategory" *ngFor="let category of categories"><span>( {{category.userCount}} )</span><h4>{{category.name}}</h4></div> 
         
         <svg class="line" width="250" height="2" viewBox="0 0 250 2" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 1H250" stroke="#ECF2F8"/>

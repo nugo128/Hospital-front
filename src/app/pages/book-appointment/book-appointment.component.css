@@ -128,3 +128,7 @@
 .delete svg {
   width: 28px;
 }
+.selected span,
+.selected h4 {
+  color: #18a4e1;
+}

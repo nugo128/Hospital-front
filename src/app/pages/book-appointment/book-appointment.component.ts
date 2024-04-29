@@ -12,6 +12,7 @@ export class BookAppointmentComponent implements OnInit {
   user: any;
   categories: any;
   id: number;
+  highlitedCategory: string;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -32,8 +33,10 @@ export class BookAppointmentComponent implements OnInit {
   }
   renderCategoryNames(): string {
     if (this.user?.categories.length === 1) {
+      this.highlitedCategory = this.user?.categories[0]?.name;
       return this.user?.categories[0]?.name;
     } else {
+      this.highlitedCategory = this.user?.categories[0]?.name;
       let categoryNames = '';
       for (let i = 0; i < this.user?.categories?.length; i++) {
         categoryNames += this.user?.categories[i]?.name;
