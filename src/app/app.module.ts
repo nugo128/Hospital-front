@@ -21,7 +21,11 @@ import {
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { BookAppointmentComponent } from './pages/book-appointment/book-appointment.component';
 import { CustomCalendarComponent } from './components/custom-calendar/custom-calendar.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
@@ -37,6 +41,10 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
+import { UserGuard } from './guards/user-guard';
+import { DoctorGuard } from './guards/doctor-guard';
+import { AdminGuard } from './guards/admin-guard';
+import { TokenInterceptor } from './token.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -88,7 +96,17 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
   ],
-  providers: [provideAnimationsAsync()],
+  providers: [
+    UserGuard,
+    DoctorGuard,
+    AdminGuard,
+    provideAnimationsAsync(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
