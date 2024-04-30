@@ -10,6 +10,9 @@ import { AdminDoctorsComponent } from './pages/admin-doctors/admin-doctors.compo
 import { EditDoctorComponent } from './pages/edit-doctor/edit-doctor.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
+import { UserGuard } from './guards/user-guard';
+import { DoctorGuard } from './guards/doctor-guard';
+import { AdminGuard } from './guards/admin-guard';
 const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'book-appointment/:id', component: BookAppointmentComponent },
@@ -27,11 +30,20 @@ const routes: Routes = [
       },
     ],
   },
-  { path: 'user-profile/:id', component: UserProfileComponent },
-  { path: 'doctor-profile/:id', component: DoctorProfileComponent },
+  {
+    path: 'user-profile/:id',
+    component: UserProfileComponent,
+    canActivate: [UserGuard],
+  },
+  {
+    path: 'doctor-profile/:id',
+    component: DoctorProfileComponent,
+    canActivate: [DoctorGuard],
+  },
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AdminGuard],
     children: [
       { path: 'registration', component: RegistrationComponent },
       { path: 'doctors', component: AdminDoctorsComponent },
