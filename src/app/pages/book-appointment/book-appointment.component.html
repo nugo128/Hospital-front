@@ -29,9 +29,9 @@
             </div>
             <div class="line"></div>
             <div class="description">
-                <p><span>2017-დღემდე</span>ჩვენი კლინიკის გენერალური დირექტორი</p>
-                <p><span>2022-დღემდე</span>ჩვენი კომპიუტერული ტომოგრაფიის განყოფილების ხელმძღვანელი</p>
-                <p><span>1995-დღემდე</span> კარდიოლოგი / არითმოლოგი</p>
+                <ng-container *ngFor="let entry of jobEntries">
+                    <p><span>{{ entry.date }}</span>, {{ entry.description }}</p>
+                  </ng-container>
             </div>
         </div>
         <div class="calendar">

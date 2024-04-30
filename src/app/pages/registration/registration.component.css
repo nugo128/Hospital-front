@@ -61,3 +61,6 @@ form {
   font-size: 16px;
   padding-left: 20px;
 }
+.description {
+  margin-top: -24px;
+}

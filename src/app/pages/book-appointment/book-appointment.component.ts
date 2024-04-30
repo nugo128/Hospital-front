@@ -13,6 +13,7 @@ export class BookAppointmentComponent implements OnInit {
   categories: any;
   id: number;
   highlitedCategory: string;
+  jobEntries: { date: string; description: string }[] = [];
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -25,6 +26,12 @@ export class BookAppointmentComponent implements OnInit {
       this.userService.user(param['id']).subscribe((resp) => {
         this.user = resp;
         console.log(resp);
+        const parts = resp['description'].split('.');
+        console.log(parts);
+        parts?.forEach((part) => {
+          const [dateRange, description] = part.split(/,\s*/);
+          this.jobEntries.push({ date: dateRange, description: description });
+        });
       });
     });
     this.categoryService.categories().subscribe((resp) => {
@@ -46,5 +53,8 @@ export class BookAppointmentComponent implements OnInit {
       }
       return categoryNames;
     }
+  }
+  parseJobHistory() {
+    console.log(this.user);
   }
 }

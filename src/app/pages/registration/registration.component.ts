@@ -78,6 +78,7 @@ export class RegistrationComponent implements OnInit {
       category: [''],
       image: [null],
       code: [''],
+      description: [''],
     });
   }
   getErrors(control) {

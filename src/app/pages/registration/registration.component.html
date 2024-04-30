@@ -89,6 +89,9 @@
                   {{'cv required'|translate}}
                 </div>
             </div>
+            <div class="input-container description">
+              <app-input *ngIf="registerDoctor" [label]="'description'|translate" [placeholder]="'description'|translate" formControlName="description"></app-input>
+            </div>
         </div>
         <app-button *ngIf="!registerDoctor" [text]="currentUrl === '/register/reset-password' ?  'submit' : 'registration' |translate" class="btn" (click)="onSubmit()"></app-button>
         <app-button *ngIf="registerDoctor" [text]="'registration'|translate" class="btn" (click)="onDoctorSubmit()"></app-button>
