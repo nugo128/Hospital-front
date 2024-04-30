@@ -10,38 +10,41 @@ export class UserService {
   users() {
     return this.http.get(`${BASE_API_URL}/users`);
   }
-  user(id) {
+  user(id: number) {
     return this.http.get(`${BASE_API_URL}/users/${id}`);
   }
-  edit(id, data) {
+  edit(id: number, data) {
     return this.http.put(`${BASE_API_URL}/users/${id}`, data);
   }
-  changeEmail(id) {
+  changeEmail(id: number) {
     return this.http.post(`${BASE_API_URL}/users/change-email?id=${id}`, '');
   }
-  verifyCode(id, code) {
+  verifyCode(id: number, code: string) {
     return this.http.post(
       `${BASE_API_URL}/users/change-email-verify?id=${id}&code=${code}`,
       ''
     );
   }
 
-  newEmail(id, code) {
+  newEmail(id: number, code: string) {
     return this.http.post(
       `${BASE_API_URL}/users/set-email?id=${id}&newEmail=${code}`,
       ''
     );
   }
-  verifyNewEmail(id, code, email) {
+  verifyNewEmail(id: number, code: string, email: string) {
     return this.http.post(
       `${BASE_API_URL}/users/new-email-verify?id=${id}&code=${code}&email=${email}`,
       ''
     );
   }
-  togglePinned(id) {
+  togglePinned(id: number) {
     return this.http.post(`${BASE_API_URL}/users/TogglePinned/${id}`, '');
   }
-  downloadFile(id) {
+  downloadFile(id: number) {
     return this.http.get(`${BASE_API_URL}/users/download/${id}`);
+  }
+  delete(id: number) {
+    return this.http.delete(`${BASE_API_URL}/users/${id}`);
   }
 }

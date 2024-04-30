@@ -8,6 +8,8 @@ import { UserService } from '../../services/user.service';
 })
 export class AdminDoctorsComponent implements OnInit {
   users: any;
+  delete: boolean = false;
+  deleteID: number = 0;
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
@@ -30,5 +32,26 @@ export class AdminDoctorsComponent implements OnInit {
       result = 0;
     }
     return `${result}px`;
+  }
+  deleteDoctor(id) {
+    this.delete = true;
+    this.deleteID = id;
+  }
+  cancelDelete() {
+    this.delete = false;
+  }
+  confirmDelete() {
+    console.log(this.deleteID);
+    this.userService.delete(this.deleteID).subscribe({
+      next: (resp) => {
+        console.log(resp);
+        const index = this.users.findIndex((user) => user.id === this.deleteID);
+        this.users.splice(index, 1);
+        this.delete = false;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }
