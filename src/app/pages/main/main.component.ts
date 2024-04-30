@@ -21,7 +21,6 @@ export class MainComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.userService.users().subscribe((resp) => {
-      console.log(resp);
       this.data = resp;
       this.users = this.data.sort((a, b) => {
         return b.pinned - a.pinned || a.name.localeCompare(b.name);
@@ -29,12 +28,10 @@ export class MainComponent implements OnInit {
       this.displayedUsers = this.users.slice(0, this.limit);
     });
     this.categoryService.categories().subscribe((resp) => {
-      console.log(resp);
       this.categories = resp;
     });
   }
   filterUsersByCategory(category: any): void {
-    console.log(category);
     if (!category || this.selectedCategory === category) {
       this.displayedUsers = this.users.slice(0, 6);
       this.selectedCategory = '';

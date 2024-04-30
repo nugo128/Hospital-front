@@ -55,7 +55,6 @@ export class UserCalendarComponent {
     this.route.params.subscribe((param) => {
       this.bookingService.user(param['id']).subscribe((resp) => {
         this.bookedSlots = resp;
-        console.log(resp);
       });
     });
   }

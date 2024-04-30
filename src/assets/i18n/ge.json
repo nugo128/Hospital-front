@@ -98,7 +98,10 @@
     "download cv":"რეზიუმეს გადმოწერა",
     "do you really want to delete doctor":"ნამდვილად გსურთ ექიმის წაშლა",
     "desc placeholder": "2021-2022,კარდიოლოგი. 2022-2023,პედიატრი.",
-    "photo uploaded":"ფოტო წარმატებით აიტვირთა"
+    "photo uploaded":"ფოტო წარმატებით აიტვირთა",
+    "choose desired time":"შეიყვანეთ სასურველი დრო",
+    "verification link sent":"ვერიფიკაციის ლინკი გამოგზავნილია მეილზე"
+    
 
 
 }

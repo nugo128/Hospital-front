@@ -55,14 +55,12 @@ export class LoginDialogComponent {
   onSubmit() {
     this.touched = true;
     this.errorMessage = '';
-    console.log(this.loginForm.get('password').errors);
     this.formdata = this.loginForm.value;
     if (this.loginForm.valid) {
       this.authService.login(this.formdata).subscribe({
         next: (resp) => {
           this.touched = false;
           if (resp['token']) {
-            console.log(resp);
             localStorage.setItem('token', resp['token']);
             this.closeDialogWithData('login');
           } else {
@@ -90,7 +88,6 @@ export class LoginDialogComponent {
       .verifyTwoStep(this.loginForm.value.email, this.loginForm.value.code)
       .subscribe({
         next: (resp) => {
-          console.log(resp);
           localStorage.setItem('token', resp['token']);
           this.closeDialogWithData('login');
         },
@@ -101,12 +98,9 @@ export class LoginDialogComponent {
   }
   reset() {
     this.formdata = this.loginForm.value;
-    console.log(this.formdata['email']);
     this.authService
       .forgotPassword(this.formdata['email'])
       .subscribe((response) => {
-        console.log(response);
-
         if (response['message'] === 'Password reset email sent') {
           this.closeDialogWithData('reset');
           this.router.navigate(['/register/reset-password']);

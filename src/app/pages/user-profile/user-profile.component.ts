@@ -40,7 +40,6 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
-      console.log(param['id']);
       this.bookingService.user(param['id']).subscribe((resp) => {
         this.bookings = resp;
         this.id = param['id'];
@@ -62,13 +61,11 @@ export class UserProfileComponent implements OnInit {
     const formdata = new FormData();
     this.passwordLengthError = this.passwordValue.length < 6;
     this.passwordsMatchError = this.passwordValue !== this.repeatPasswordValue;
-    console.log(this.passwordValue, this.repeatPasswordValue);
     if (!this.passwordLengthError && !this.passwordsMatchError) {
       formdata.append('password', this.passwordValue);
       formdata.append('repeatPassword', this.repeatPasswordValue);
       this.userService.edit(this.id, formdata).subscribe({
         next: (resp) => {
-          console.log(resp);
           this._snackbar.open('პაროლი წარმატებით შეიცვალა!', 'დახურვა', {
             horizontalPosition: this.horizontalPosition,
             verticalPosition: this.verticalPosition,

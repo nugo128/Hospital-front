@@ -60,7 +60,6 @@ export class RegistrationComponent implements OnInit {
   ) {
     router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
-        console.log(val['url']);
         this.currentUrl = val['url'];
       }
     });
@@ -89,7 +88,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.validationMessages.name);
     this.currentUrl = this.router.url;
     if (this.router.url === '/admin/registration') {
       this.registerDoctor = true;
@@ -97,10 +95,8 @@ export class RegistrationComponent implements OnInit {
 
     if (this.router.url.split('?')[0] === '/register/verify') {
       this.route.queryParams.subscribe((params) => {
-        console.log(params);
         this.authService.verify(params.token).subscribe(
           (resp) => {
-            console.log(resp['message']);
             localStorage.setItem('token', resp['token']);
             this.router.navigate(['/']);
             window.location.reload();
@@ -141,10 +137,8 @@ export class RegistrationComponent implements OnInit {
       }
     });
     this.touched = true;
-    console.log(this.registrationForm.value);
     this.authService.register(this.formdata).subscribe({
       next: (resp) => {
-        console.log(resp);
         this.photoError = false;
         this.fileError = false;
       },
@@ -214,15 +208,14 @@ export class RegistrationComponent implements OnInit {
           next: (resp) => {
             this.touched = false;
             this._snackbar.open(
-              'ვერიფიკაციის ლინკი გამოგზავნილია მეილზე!',
-              'დახურვა',
+              this.translate.instant('verification link sent'),
+              this.translate.instant('close'),
               {
                 horizontalPosition: this.horizontalPosition,
                 verticalPosition: this.verticalPosition,
                 duration: 5000,
               }
             );
-            console.log(resp);
           },
           error: (err) => {
             this.errorMessage = err.error;

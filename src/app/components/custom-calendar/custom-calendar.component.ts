@@ -41,7 +41,6 @@ export class CustomCalendarComponent implements OnInit {
       this.loggedInUser = user;
     });
     this.bookingService.doctor(this.id).subscribe((resp) => {
-      console.log(resp);
       for (let i = 0; i < resp['length']; i++) {
         const dateString = resp[i].bookingDate.split('T')[0];
 
@@ -119,7 +118,6 @@ export class CustomCalendarComponent implements OnInit {
         this.approveBooking = true;
       } else {
         this.pleaseLogIn = true;
-        console.log(2);
         setTimeout(() => {
           this.pleaseLogIn = false;
         }, 5000);

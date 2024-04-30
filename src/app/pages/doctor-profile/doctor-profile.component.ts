@@ -41,10 +41,8 @@ export class DoctorProfileComponent implements OnInit {
   errorMessage: string = '';
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
-      console.log(param['id']);
       this.userService.user(param['id']).subscribe((resp) => {
         this.doctor = resp;
-        console.log(this.doctor);
       });
       this.bookingService.doctor(param['id']).subscribe((resp) => {
         this.bookings = resp;
@@ -73,7 +71,6 @@ export class DoctorProfileComponent implements OnInit {
         }
       }
       this.currentCategory = categoryNames;
-      console.log(categoryNames);
       return categoryNames;
     }
   }
@@ -85,13 +82,11 @@ export class DoctorProfileComponent implements OnInit {
     const formdata = new FormData();
     this.passwordLengthError = this.passwordValue.length < 6;
     this.passwordsMatchError = this.passwordValue !== this.repeatPasswordValue;
-    console.log(this.passwordValue, this.repeatPasswordValue);
     if (!this.passwordLengthError && !this.passwordsMatchError) {
       formdata.append('password', this.passwordValue);
       formdata.append('repeatPassword', this.repeatPasswordValue);
       this.userService.edit(this.id, formdata).subscribe({
         next: (resp) => {
-          console.log(resp);
           this._snackbar.open('პაროლი წარმატებით შეიცვალა!', 'დახურვა', {
             horizontalPosition: this.horizontalPosition,
             verticalPosition: this.verticalPosition,

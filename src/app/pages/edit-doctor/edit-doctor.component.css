@@ -145,6 +145,7 @@ input {
   color: #006d9c;
 }
 .download {
+  margin-top: 20px;
   border: none;
   padding: 10px 20px;
   border-radius: 25px;

@@ -42,7 +42,6 @@ export class EditDoctorComponent implements OnInit {
       this.id = param['id'];
       this.userService.user(param['id']).subscribe((resp) => {
         this.user = resp;
-        console.log(resp);
       });
     });
   }
@@ -70,7 +69,6 @@ export class EditDoctorComponent implements OnInit {
       this.formdata.append('image', file, file.name);
       this.userService.edit(this.user.id, this.formdata).subscribe({
         next: (resp) => {
-          console.log(resp);
           const reader = new FileReader();
           reader.onload = () => {
             const base64Data: string = reader.result as string;
@@ -95,9 +93,7 @@ export class EditDoctorComponent implements OnInit {
       height: '450px',
       width: '600px',
     });
-    dialogRef.afterClosed().subscribe((res) => {
-      console.log(res);
-    });
+    dialogRef.afterClosed().subscribe((res) => {});
   }
   numberOfBooking(e: number) {
     this.numOfBookings = e;

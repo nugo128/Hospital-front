@@ -14,7 +14,6 @@ export class AdminDoctorsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.users().subscribe((resp) => {
-      console.log(resp);
       this.users = resp;
     });
   }
@@ -41,10 +40,8 @@ export class AdminDoctorsComponent implements OnInit {
     this.delete = false;
   }
   confirmDelete() {
-    console.log(this.deleteID);
     this.userService.delete(this.deleteID).subscribe({
       next: (resp) => {
-        console.log(resp);
         const index = this.users.findIndex((user) => user.id === this.deleteID);
         this.users.splice(index, 1);
         this.delete = false;

@@ -25,11 +25,9 @@ export class BookAppointmentComponent implements OnInit {
       this.id = param['id'];
       this.userService.user(param['id']).subscribe((resp) => {
         this.user = resp;
-        console.log(resp);
-        const parts = resp['description'].split('.');
-        console.log(parts);
+        const parts = resp['description']?.split('.');
         parts?.forEach((part) => {
-          const [dateRange, description] = part.split(/,\s*/);
+          const [dateRange, description] = part?.split(/,\s*/);
           this.jobEntries.push({ date: dateRange, description: description });
         });
       });
@@ -53,8 +51,5 @@ export class BookAppointmentComponent implements OnInit {
       }
       return categoryNames;
     }
-  }
-  parseJobHistory() {
-    console.log(this.user);
   }
 }
