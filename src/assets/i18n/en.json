@@ -41,6 +41,7 @@
      "incorrect email format": "The email format is incorrect",
      "password required": "Password is required",
      "password length": "Password must be at least 8 characters",
+     "password and repeat password do not match":"password and repeat password do not match",
      "name":"Name",
      "min 5 symbols":"(min 5 symbols)",
      "ID number": "ID number",
@@ -95,7 +96,9 @@
      "Sat":"Sat",
      "Sun":"Sun",
      "download cv":"Download CV",
-     "do you really want to delete doctor":"Do you really want to delete doctor"
+     "do you really want to delete doctor":"Do you really want to delete doctor",
+     "desc placeholder": "2021-2022, cardiologist. 2022-2023, pediatrician.'",
+     "photo uploaded":"Photo Uploaded"
      
 
 }

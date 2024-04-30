@@ -4,6 +4,11 @@ import { BookingService } from '../../services/bookings.service';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-doctor-profile',
@@ -17,13 +22,22 @@ export class DoctorProfileComponent implements OnInit {
     private bookingService: BookingService,
     private authService: AuthService,
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private _snackbar: MatSnackBar
   ) {}
   categories: any;
   bookings: any;
   id: number;
   loggedInUser: any;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   doctor: any;
+  showPasswordFields: boolean = false;
+  passwordValue: string;
+  repeatPasswordValue: string;
+  passwordLengthError: boolean = false;
+  passwordsMatchError: boolean = false;
+  errorMessage: string = '';
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
       console.log(param['id']);
@@ -60,6 +74,33 @@ export class DoctorProfileComponent implements OnInit {
       this.currentCategory = categoryNames;
       console.log(categoryNames);
       return categoryNames;
+    }
+  }
+  changePassword() {
+    this.showPasswordFields = !this.showPasswordFields;
+  }
+
+  submitChangePassword() {
+    const formdata = new FormData();
+    this.passwordLengthError = this.passwordValue.length < 6;
+    this.passwordsMatchError = this.passwordValue !== this.repeatPasswordValue;
+    console.log(this.passwordValue, this.repeatPasswordValue);
+    if (!this.passwordLengthError && !this.passwordsMatchError) {
+      formdata.append('password', this.passwordValue);
+      formdata.append('repeatPassword', this.repeatPasswordValue);
+      this.userService.edit(this.id, formdata).subscribe({
+        next: (resp) => {
+          console.log(resp);
+          this._snackbar.open('პაროლი წარმატებით შეიცვალა!', 'დახურვა', {
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+            duration: 5000,
+          });
+        },
+        error: (err) => {
+          this.errorMessage = err.error.message;
+        },
+      });
     }
   }
 }

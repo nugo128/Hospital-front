@@ -29,7 +29,17 @@
             <h3>Email:</h3>
             <span>{{loggedInUser?.email}}</span>
         </div>
-        <h3>{{"change password"|translate}}</h3>
+        <h3 (click)="changePassword()">{{"change password"|translate}}</h3>
+        <div class="passwords" *ngIf="showPasswordFields">
+            <label for="">{{"password"|translate}}</label>
+            <input type="password" [(ngModel)]="passwordValue"  class="edit">
+            <p *ngIf="passwordLengthError" class="error">{{'password length'|translate}}</p>
+            <label  for="">{{"repeat password"|translate}}</label>
+            <input  [(ngModel)]="repeatPasswordValue" type="password" class="edit">
+            <p *ngIf="passwordsMatchError" class="error">{{'password and repeat password do not match'|translate}}</p>
+            <p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
+            <button (click)="submitChangePassword()">{{'submit'|translate}}</button>
+        </div>
         <div class="my-bookings">
             <h3>{{"my booking"|translate}}:</h3>
             <span>( {{bookings?.length}} )</span>

@@ -88,3 +88,19 @@ h3 {
   font-weight: 500;
   color: #0533544d;
 }
+.edit {
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding-left: 5px;
+  height: 30px;
+  border-radius: 20px;
+}
+.passwords button {
+  padding: 10px 25px;
+  border: 1px solid #18a4e180;
+  cursor: pointer;
+  border-radius: 50px;
+}
+.error {
+  color: red;
+}

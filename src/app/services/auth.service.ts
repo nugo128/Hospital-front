@@ -84,4 +84,16 @@ export class AuthService {
       }
     );
   }
+  private readonly ROLE_KEY = 'userRole';
+  setUserRole(role: string) {
+    localStorage.setItem(this.ROLE_KEY, role);
+  }
+
+  getUserRole(): string | null {
+    return localStorage.getItem(this.ROLE_KEY);
+  }
+
+  clearUserRole() {
+    localStorage.removeItem(this.ROLE_KEY);
+  }
 }

@@ -23,27 +23,30 @@ export class RegistrationComponent implements OnInit {
   touched: boolean = false;
   photoError: boolean = true;
   fileError: boolean = true;
+  photoUploaded: boolean = false;
+  fileUploaded: boolean = false;
+  fileName: string = '';
 
   validationMessages = {
     email: {
-      required: this.translate.instant('email is required'),
-      email: this.translate.instant('incorrect email format'),
+      required: 'email is required',
+      email: 'incorrect email format',
     },
     name: {
-      required: this.translate.instant('name required'),
-      minlength: this.translate.instant('name min 5 symbols'),
+      required: 'name required',
+      minlength: 'name min 5 symbols',
     },
     lastName: {
-      required: this.translate.instant('lastname required'),
+      required: 'lastname required',
     },
     idNumber: {
-      required: this.translate.instant('ID required'),
-      minlength: this.translate.instant('ID length'),
-      maxlength: this.translate.instant('ID length'),
+      required: 'ID required',
+      minlength: 'ID length',
+      maxlength: 'ID length',
     },
     password: {
-      required: this.translate.instant('password required'),
-      minlength: this.translate.instant('password length'),
+      required: 'password required',
+      minlength: 'password length',
     },
   };
   registerDoctor: boolean = false;
@@ -86,6 +89,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.validationMessages.name);
     this.currentUrl = this.router.url;
     if (this.router.url === '/admin/registration') {
       this.registerDoctor = true;
@@ -119,8 +123,11 @@ export class RegistrationComponent implements OnInit {
         this.formdata.append('CV', file, file.name);
         this.formdata.append('fileName', file.name);
         this.fileError = false;
+        this.fileUploaded = true;
+        this.fileName = file.name;
       } else {
         this.formdata.append('image', file, file.name);
+        this.photoUploaded = true;
         this.photoError = false;
       }
     }

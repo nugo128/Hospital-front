@@ -41,6 +41,7 @@
     "incorrect email format":"მეილის ფორმატი არასწორია",
     "password required":"პაროლი სავალდებულოა",
     "password length":"პაროლი უნდა შედგებოდეს მინიმუმ 8 სიმბოლოსგან",
+    "password and repeat password do not match":"პაროლი და გაიმეორე პაროლი არ ემთხვევა",
     "name":"სახელი",
     "min 5 symbols":"(მინიმუმ 5 სიმბოლო)",
     "ID number":"პირადი ნომერი",
@@ -95,7 +96,9 @@
     "Sat":"შაბ",
     "Sun":"კვი",
     "download cv":"რეზიუმეს გადმოწერა",
-    "do you really want to delete doctor":"ნამდვილად გსურთ ექიმის წაშლა"
+    "do you really want to delete doctor":"ნამდვილად გსურთ ექიმის წაშლა",
+    "desc placeholder": "2021-2022,კარდიოლოგი. 2022-2023,პედიატრი.",
+    "photo uploaded":"ფოტო წარმატებით აიტვირთა"
 
 
 }
