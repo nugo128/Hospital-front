@@ -104,3 +104,10 @@ h3 {
 .error {
   color: red;
 }
+.logout {
+  padding: 10px 25px;
+  background-color: #18a4e180;
+  cursor: pointer;
+  border: none;
+  border-radius: 50px;
+}

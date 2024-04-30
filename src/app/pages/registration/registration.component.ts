@@ -101,7 +101,9 @@ export class RegistrationComponent implements OnInit {
         this.authService.verify(params.token).subscribe(
           (resp) => {
             console.log(resp['message']);
+            localStorage.setItem('token', resp['token']);
             this.router.navigate(['/']);
+            window.location.reload();
             this._snackbar.open('ვერიფიკაცია წარმატებით დასრულდა!', 'დახურვა', {
               horizontalPosition: this.horizontalPosition,
               verticalPosition: this.verticalPosition,
@@ -211,6 +213,15 @@ export class RegistrationComponent implements OnInit {
         this.authService.register(this.formdata).subscribe({
           next: (resp) => {
             this.touched = false;
+            this._snackbar.open(
+              'ვერიფიკაციის ლინკი გამოგზავნილია მეილზე!',
+              'დახურვა',
+              {
+                horizontalPosition: this.horizontalPosition,
+                verticalPosition: this.verticalPosition,
+                duration: 5000,
+              }
+            );
             console.log(resp);
           },
           error: (err) => {

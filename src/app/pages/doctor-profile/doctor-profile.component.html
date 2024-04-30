@@ -36,7 +36,7 @@
             <h3>Email:</h3>
             <span>{{doctor?.email}}</span>
         </div>
-        <h3 (click)="changePassword()">{{"change password"|translate}}</h3>
+        <h3 (click)="changePassword()" class="change-password">{{"change password"|translate}}</h3>
         <div class="passwords" *ngIf="showPasswordFields">
             <label for="">{{"password"|translate}}</label>
             <input type="password" [(ngModel)]="passwordValue"  class="edit">
@@ -51,6 +51,7 @@
             <h3>{{"booked"|translate}}:</h3>
             <span>( {{bookings?.length}} )</span>
         </div>
+        <button class="logout" (click)="logout()">log out</button>
     </div>
     <div class="calendar">
         <app-doctor-calendar></app-doctor-calendar>

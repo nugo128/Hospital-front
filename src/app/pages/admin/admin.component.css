@@ -4,6 +4,7 @@
 .navigation {
   display: flex;
   gap: 80px;
+  margin-bottom: 100px;
 }
 .navlinks {
   display: flex;

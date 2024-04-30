@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASE_API_URL } from '../global';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class AuthService {
   public get currentUserValue(): any {
     return this.currentUserSubject.value;
   }
-  private loadCurrentUser(token: string) {
+  public loadCurrentUser(token: string) {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -33,6 +33,7 @@ export class AuthService {
           this.currentUserSubject.next(user);
         },
         (error) => {
+          this.currentUserSubject.next(null);
           console.error('Failed to load user details', error);
         }
       );
@@ -95,5 +96,13 @@ export class AuthService {
 
   clearUserRole() {
     localStorage.removeItem(this.ROLE_KEY);
+  }
+
+  private triggerFunctionSubject = new Subject<void>();
+
+  triggerFunction$ = this.triggerFunctionSubject.asObservable();
+
+  logout() {
+    this.triggerFunctionSubject.next();
   }
 }

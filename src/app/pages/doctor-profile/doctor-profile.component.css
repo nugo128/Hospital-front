@@ -98,6 +98,9 @@ h3 {
   display: flex;
   gap: 5px;
 }
+.change-password {
+  cursor: pointer;
+}
 .selected span,
 .selected h4 {
   color: #18a4e1;
@@ -117,4 +120,11 @@ h3 {
 }
 .error {
   color: red;
+}
+.logout {
+  padding: 10px 25px;
+  background-color: #18a4e180;
+  cursor: pointer;
+  border: none;
+  border-radius: 50px;
 }

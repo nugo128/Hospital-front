@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { BookingService } from '../../services/bookings.service';
 import { AuthService } from '../../services/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import {
   MatSnackBar,
@@ -23,7 +23,8 @@ export class DoctorProfileComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private userService: UserService,
-    private _snackbar: MatSnackBar
+    private _snackbar: MatSnackBar,
+    private router: Router
   ) {}
   categories: any;
   bookings: any;
@@ -102,5 +103,10 @@ export class DoctorProfileComponent implements OnInit {
         },
       });
     }
+  }
+  logout() {
+    localStorage.removeItem('token');
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

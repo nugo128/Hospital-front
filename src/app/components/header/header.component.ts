@@ -8,6 +8,7 @@ import {
 } from '@angular/material/snack-bar';
 import { AuthService } from '../../services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   loggedInUser: any;
+  subscription: Subscription;
   lang: string = localStorage.getItem('lang')
     ? localStorage.getItem('lang')
     : 'ge';
@@ -27,13 +29,20 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService,
     private translate: TranslateService
   ) {
+    this.subscription = this.authService.triggerFunction$.subscribe(() => {
+      this.authService.loadCurrentUser(localStorage.getItem('token'));
+      this.checkUser();
+    });
     translate.setDefaultLang(this.lang);
   }
 
   ngOnInit(): void {
+    this.checkUser();
+  }
+
+  checkUser() {
     this.authService.currentUser.subscribe((user) => {
       this.loggedInUser = user;
-      console.log(this.loggedInUser);
     });
   }
   openDialog() {
@@ -44,10 +53,7 @@ export class HeaderComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'login') {
-        this.authService.currentUser.subscribe((user) => {
-          this.loggedInUser = user;
-          console.log(this.loggedInUser);
-        });
+        this.checkUser();
       }
       if (result === 'reset') {
         this._snackbar.open('აქტივაციის კოდი გამოგზავნილია მეილზე', 'Close', {
