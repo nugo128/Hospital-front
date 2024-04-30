@@ -45,6 +45,10 @@ import { UserGuard } from './guards/user-guard';
 import { DoctorGuard } from './guards/doctor-guard';
 import { AdminGuard } from './guards/admin-guard';
 import { TokenInterceptor } from './token.interceptor';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { SpinnerInterceptor } from './services/spinner-interceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -74,8 +78,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminCalendarComponent,
     CategoriesComponent,
     ErrorPageComponent,
+    SpinnerComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -106,6 +113,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       useClass: TokenInterceptor,
       multi: true,
     },
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
